@@ -69,7 +69,7 @@ fetch("tasks.json")
     const sortedWeeks = Object.keys(weeks).sort((a,b) => parseInt(a.replace("Week","")) - parseInt(b.replace("Week","")));
 
     sortedWeeks.forEach(week => {
-      html += `<tr><th colspan="${timeSlots.length+1}" style="background:#e9ecef">${week}</th></tr>`;
+      html += `<tr><th colspan="${timeSlots.length+1}" style="background:#007BFF">${week}</th></tr>`;
       html += "<tr><th>Day</th>";
       timeSlots.forEach(t => html += `<th>${format12Hour(t)}-${format12Hour(t+1)}</th>`);
       html += "</tr>";
