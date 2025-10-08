@@ -3,32 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>My School Portal</title>
     <style>
+        /* Reset some default styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-        }
-        h1 {
+            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
             color: #333;
+        }
+
+        h1 {
             font-size: 3em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .links a:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <h1>Homepage</h1>
-<br>
-      <a href="CHEM0513.html">Go to Chemistry Page</a><br>
-      <a href="PHY0533.html">Go to Physics Page</a><br>
-      <a href="CSE0613.html">Go to cse Page</a><br>
-      <a href="GED0232.html">Go to english Page</a><br>
-      <a herf="MATH0541.html">Go to math Page</a><br>
-      
-      
+    <h1>Welcome to My School Portal</h1>
+
+    <div class="links">
+        <a href="CHEM0513.html">Chemistry Page</a>
+        <a href="PHY0533.html">Physics Page</a>
+        <a href="CSE0613.html">CSE Page</a>
+        <a href="GED0232.html">English Page</a>
+        <a href="MATH0541.html">Math Page</a>
+    </div>
 </body>
 </html>
