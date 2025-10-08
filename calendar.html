@@ -11,17 +11,18 @@
   th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
   th { background-color: #f0f0f0; }
   td { background-color: #fff; min-width: 80px; position: relative; }
-  .task {
-    background-color: #e0f7fa;
-    margin: 2px 0;
-    padding: 4px 6px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #000;
+  .task { 
+    background-color: #e0f7fa; 
+    margin: 2px 0; 
+    padding: 4px 6px; 
+    border-radius: 6px; 
+    font-size: 13px; 
+    font-weight: 500; 
+    color: #000; 
   }
   nav { text-align: center; margin-bottom: 20px; }
   nav a { text-decoration: none; color: #007BFF; margin: 0 10px; font-weight: bold; }
+  #error { color: red; text-align: center; margin-top: 20px; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -32,12 +33,26 @@
 </nav>
 
 <h1>Full Timetable</h1>
+<div id="error"></div>
 <table id="calendar"></table>
 
 <script>
+function parseSlotTime(time) {
+  // Convert 12-hour style to 24-hour for internal calculations
+  let [start, end] = time.split("-").map(t => parseInt(t, 10));
+  if (start < 8) start += 12;   // afternoon
+  if (end <= start) end += 12;  // handle 12-1 or 1-2
+  return [start, end];
+}
+
 fetch("tasks.json")
-  .then(res => res.json())
+  .then(res => {
+    if(!res.ok) throw new Error("Could not load tasks.json");
+    return res.json();
+  })
   .then(data => {
+    if(!data || Object.keys(data).length === 0) throw new Error("tasks.json is empty or invalid");
+
     const timeSlots = ["8-9","9-10","10-11","11-12","12-1","1-2","2-3","3-4"];
     const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const calendar = document.getElementById("calendar");
@@ -47,47 +62,41 @@ fetch("tasks.json")
     const weeks = {};
     for (const date in data) {
       const entry = data[date];
+      if(!entry.day || !entry.slots) continue; // skip invalid
       const week = entry.week || "Week 1";
       if (!weeks[week]) weeks[week] = [];
       weeks[week].push({ day: entry.day, slots: entry.slots });
     }
 
-    // helper to count span length in hours
-    function parseSlotTime(time) {
-      let [start,end] = time.split("-").map(t => parseInt(t));
-      if(start < 8) start += 12;   // assume PM for afternoon slots
-      if(end <= start) end += 12;  // handle ranges like 12-1 or 1-2
-      return [start, end];
-    }
+    if(Object.keys(weeks).length === 0) throw new Error("No valid week entries in JSON");
 
     // sort weeks numerically
-    const sortedWeeks = Object.keys(weeks).sort((a,b)=>
+    const sortedWeeks = Object.keys(weeks).sort((a,b) => 
       parseInt(a.replace("Week","")) - parseInt(b.replace("Week",""))
     );
 
-    sortedWeeks.forEach(week=>{
+    sortedWeeks.forEach(week => {
       html += `<tr><th colspan="${timeSlots.length+1}" style="background:#e9ecef">${week}</th></tr>`;
       html += "<tr><th>Day</th>";
-      timeSlots.forEach(t=> html += `<th>${t}</th>`);
+      timeSlots.forEach(t => html += `<th>${t}</th>`);
       html += "</tr>";
 
       // sort days in order
-      weeks[week].sort((a,b)=>
-        daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day)
-      );
+      weeks[week].sort((a,b) => daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day));
 
-      weeks[week].forEach(dayObj=>{
+      weeks[week].forEach(dayObj => {
         html += `<tr><td><b>${dayObj.day}</b></td>`;
 
         // track occupied hours
         const slotMap = {};
-        dayObj.slots.forEach(slot=>{
+        dayObj.slots.forEach(slot => {
+          if(!slot.time || !slot.task) return; // skip invalid
           const [start,end] = parseSlotTime(slot.time);
           for(let h=start; h<end; h++) slotMap[h] = slot;
         });
 
         let hour = 8;
-        while(hour < 16){ // until 4 PM
+        while(hour < 16){
           const slot = slotMap[hour];
           if(slot){
             const [start,end] = parseSlotTime(slot.time);
@@ -108,7 +117,10 @@ fetch("tasks.json")
 
     calendar.innerHTML = html;
   })
-  .catch(err=>console.error("Error loading tasks:",err));
+  .catch(err => {
+    console.error(err);
+    document.getElementById("error").textContent = "Error loading calendar: " + err.message;
+  });
 </script>
 
 </body>
