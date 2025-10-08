@@ -20,8 +20,8 @@
     "week": "Week 13",
     "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602", "color": "green" },
-      { "time": "10-12", "task": "PHY 2, A1: 102", "color": "red" },
+      { "time": "8-10", "task": "ENG 1, 602" },
+      { "time": "10-12", "task": "PHY 2, A1: 102" },
       { "time": "12-1", "task": "PHY 1, 603" },
       { "time": "1-2", "task": "CHEM, 202" }
     ]
@@ -49,8 +49,8 @@
     "week": "Week 14",
     "day": "Sunday",
     "slots": [
-      { "time": "10-12", "task": "CHEM, 510", "color": "green" },
-      { "time": "12-2", "task": "MATH, 413", "color": "green" }
+      { "time": "10-12", "task": "CHEM, 510" },
+      { "time": "12-2", "task": "MATH, 413"}
     ]
   },
   "2025-10-20": {
@@ -66,8 +66,8 @@
     "week": "Week 14",
     "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602", "color": "green" },
-      { "time": "10-12", "task": "PHY 2, A1: 102", "color": "red" },
+      { "time": "8-10", "task": "ENG 1, 602", },
+      { "time": "10-12", "task": "PHY 2, A1: 102", },
       { "time": "12-1", "task": "PHY 1, 603" },
       { "time": "1-2", "task": "CHEM, 202" }
     ]
@@ -95,8 +95,8 @@
     "week": "Week 15",
     "day": "Sunday",
     "slots": [
-      { "time": "10-12", "task": "CHEM, 510", "color": "green" },
-      { "time": "12-2", "task": "MATH, 413", "color": "green" }
+      { "time": "10-12", "task": "CHEM, 510" },
+      { "time": "12-2", "task": "MATH, 413" }
     ]
   },
   "2025-10-27": {
@@ -112,8 +112,8 @@
     "week": "Week 15",
     "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602", "color": "green" },
-      { "time": "10-12", "task": "PHY 2, A1: 102", "color": "red" },
+      { "time": "8-10", "task": "ENG 1, 602" },
+      { "time": "10-12", "task": "PHY 2, A1: 102" },
       { "time": "12-1", "task": "PHY 1, 603" },
       { "time": "1-2", "task": "CHEM, 202" }
     ]
@@ -141,8 +141,8 @@
     "week": "Week 16",
     "day": "Sunday",
     "slots": [
-      { "time": "10-12", "task": "CHEM, 510", "color": "green" },
-      { "time": "12-2", "task": "MATH, 413", "color": "green" }
+      { "time": "10-12", "task": "CHEM, 510" },
+      { "time": "12-2", "task": "MATH, 413" }
     ]
   },
   "2025-11-03": {
@@ -158,8 +158,8 @@
     "week": "Week 16",
     "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602", "color": "green" },
-      { "time": "10-12", "task": "PHY 2, A1: 102", "color": "red" },
+      { "time": "8-10", "task": "ENG 1, 602" },
+      { "time": "10-12", "task": "PHY 2, A1: 102" },
       { "time": "12-1", "task": "PHY 1, 603" },
       { "time": "1-2", "task": "CHEM, 202" }
     ]
