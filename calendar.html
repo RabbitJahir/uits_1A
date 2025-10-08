@@ -52,11 +52,13 @@ fetch("tasks.json")
       weeks[week].push({ day: entry.day, slots: entry.slots });
     }
 
-    // helper to count span length
-    const slotCount = (range) => {
-      const [start,end] = range.split("-").map(t=>parseInt(t));
-      return end>start ? end-start : 1;
-    };
+    // helper to count span length in hours
+    function parseSlotTime(time) {
+      let [start,end] = time.split("-").map(t => parseInt(t));
+      if(start < 8) start += 12;   // assume PM for afternoon slots
+      if(end <= start) end += 12;  // handle ranges like 12-1 or 1-2
+      return [start, end];
+    }
 
     // sort weeks numerically
     const sortedWeeks = Object.keys(weeks).sort((a,b)=>
@@ -80,15 +82,16 @@ fetch("tasks.json")
         // track occupied hours
         const slotMap = {};
         dayObj.slots.forEach(slot=>{
-          const [start,end] = slot.time.split("-").map(t=>parseInt(t));
-          for(let h=start;h<end;h++) slotMap[h] = slot;
+          const [start,end] = parseSlotTime(slot.time);
+          for(let h=start; h<end; h++) slotMap[h] = slot;
         });
 
         let hour = 8;
         while(hour < 16){ // until 4 PM
           const slot = slotMap[hour];
           if(slot){
-            const span = slotCount(slot.time);
+            const [start,end] = parseSlotTime(slot.time);
+            const span = Math.min(end,16) - hour;
             const colorStyle = slot.color
               ? `background:${slot.color};color:white;border-radius:6px;`
               : `background:#e0f7fa;`;
@@ -107,7 +110,6 @@ fetch("tasks.json")
   })
   .catch(err=>console.error("Error loading tasks:",err));
 </script>
-
 
 </body>
 </html>
