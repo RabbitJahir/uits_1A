@@ -10,7 +10,7 @@
     table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
     th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
     th { background-color: #f0f0f0; }
-    td { background-color: #fff; min-width: 80px; }
+    td { background-color: #fff; min-width: 80px; position: relative; }
     .task {
         background-color: #e0f7fa;
         margin: 2px 0;
@@ -32,9 +32,7 @@
 </nav>
 
 <h1>Full Timetable</h1>
-<table id="calendar">
-    <!-- Table will be generated here -->
-</table>
+<table id="calendar"></table>
 
 <script>
 fetch("tasks.json")
@@ -66,26 +64,43 @@ fetch("tasks.json")
 
             weeks[week].forEach(dayObj => {
                 html += `<tr><td>${dayObj.day}</td>`;
-                timeSlots.forEach(slot => {
-                    let cellHTML = "";
-                    
-                    // Compatibility: old or new format
-                    dayObj.slots.forEach(s => {
-                        if (typeof s === "string" && s.startsWith(slot)) {
-                            // Old format, e.g. "8-9: Physics"
-                            cellHTML += `<div class="task">${s}</div>`;
-                        } else if (typeof s === "object" && s.time === slot) {
-                            // New format with color
-                            const color = s.color ? s.color.toLowerCase() : "";
-                            cellHTML += `<div class="task" style="
-                                background-color: ${color ? color : '#e0f7fa'};
-                                color: ${color ? 'white' : 'black'};
-                            ">${s.time}: ${s.task}</div>`;
-                        }
-                    });
 
-                    html += `<td>${cellHTML}</td>`;
-                });
+                let i = 0;
+                while (i < timeSlots.length) {
+                    let slotFound = false;
+
+                    for (let s of dayObj.slots) {
+                        if (typeof s === "string" && s.startsWith(timeSlots[i])) {
+                            html += `<td><div class="task">${s}</div></td>`;
+                            slotFound = true;
+                            break;
+                        } else if (typeof s === "object") {
+                            const [start, end] = s.time.split("-");
+                            const startIndex = timeSlots.findIndex(t => t.startsWith(start));
+                            const endIndex = timeSlots.findIndex(t => t.startsWith(end));
+                            const color = s.color ? s.color.toLowerCase() : "";
+                            
+                            // Determine how many slots it spans
+                            const span = endIndex > startIndex ? endIndex - startIndex : 1;
+
+                            if (timeSlots[i].startsWith(start)) {
+                                html += `
+                                    <td colspan="${span}" style="background:${color || "#e0f7fa"}; color:${color ? "white" : "black"}">
+                                        <div class="task" style="background:transparent;">${s.time}: ${s.task}</div>
+                                    </td>`;
+                                i += span;
+                                slotFound = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!slotFound) {
+                        html += "<td></td>";
+                        i++;
+                    }
+                }
+
                 html += "</tr>";
             });
         }
