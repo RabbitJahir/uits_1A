@@ -1,114 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Full Timetable</title>
-<style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-    h1 { text-align: center; margin-bottom: 20px; }
-    table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
-    th { background-color: #f0f0f0; }
-    td { background-color: #fff; min-width: 80px; position: relative; }
-    .task {
-        background-color: #e0f7fa;
-        margin: 2px 0;
-        padding: 4px 6px;
-        border-radius: 6px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #000;
-    }
-    nav { text-align: center; margin-bottom: 20px; }
-    nav a { text-decoration: none; color: #007BFF; margin: 0 10px; font-weight: bold; }
-</style>
-</head>
-<body>
-
-<nav>
-    <a href="index.html">Home</a> |
-    <a href="calendar.html">Calendar</a>
-</nav>
-
-<h1>Full Timetable</h1>
-<table id="calendar"></table>
-
 <script>
 fetch("tasks.json")
-    .then(res => res.json())
-    .then(data => {
-        const timeSlots = ["8-9","9-10","10-11","11-12","12-1","1-2","2-3","3-4"];
-        const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        const calendar = document.getElementById("calendar");
-        let html = "";
+  .then(res => res.json())
+  .then(data => {
+    const timeSlots = ["8-9", "9-10", "10-11", "11-12", "12-1", "1-2", "2-3", "3-4"];
+    const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const calendar = document.getElementById("calendar");
+    let html = "";
 
-        let weeks = {};
-        for (let date in data) {
-            const week = data[date].week || "Week 1";
-            if (!weeks[week]) weeks[week] = [];
-            weeks[week].push({
-                date,
-                day: data[date].day,
-                slots: data[date].slots
-            });
-        }
+    // Group data by week number
+    let weeks = {};
+    for (let date in data) {
+      const week = data[date].week || "Week 1";
+      if (!weeks[week]) weeks[week] = [];
+      weeks[week].push({ date, day: data[date].day, slots: data[date].slots });
+    }
 
-        for (let week in weeks) {
-            html += `<tr><th colspan="${timeSlots.length + 1}">${week}</th></tr>`;
-            html += "<tr><th>Day</th>";
-            timeSlots.forEach(slot => html += `<th>${slot}</th>`);
-            html += "</tr>";
+    // Sort by week order
+    const sortedWeeks = Object.keys(weeks).sort((a,b) => {
+      const na = parseInt(a.replace("Week","").trim());
+      const nb = parseInt(b.replace("Week","").trim());
+      return na - nb;
+    });
 
-            weeks[week].sort((a, b) => daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day));
+    sortedWeeks.forEach(week => {
+      html += `<tr><th colspan="${timeSlots.length + 1}" style="background:#e9ecef">${week}</th></tr>`;
+      html += "<tr><th>Day</th>";
+      timeSlots.forEach(slot => html += `<th>${slot}</th>`);
+      html += "</tr>";
 
-            weeks[week].forEach(dayObj => {
-                html += `<tr><td>${dayObj.day}</td>`;
+      // Sort days within week
+      weeks[week].sort((a, b) => daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day));
 
-                let i = 0;
-                while (i < timeSlots.length) {
-                    let slotFound = false;
+      weeks[week].forEach(dayObj => {
+        html += `<tr><td><b>${dayObj.day}</b></td>`;
+        
+        timeSlots.forEach(slotTime => {
+          // Find matching slot
+          const matchingSlot = dayObj.slots.find(s => s.time.startsWith(slotTime));
+          if (matchingSlot) {
+            let colorStyle = matchingSlot.color ? `background:${matchingSlot.color};color:white;border-radius:4px;` : "background:#e0f7fa;";
+            html += `<td style="${colorStyle}">${matchingSlot.time}: ${matchingSlot.task}</td>`;
+          } else {
+            html += `<td></td>`;
+          }
+        });
 
-                    for (let s of dayObj.slots) {
-                        if (typeof s === "string" && s.startsWith(timeSlots[i])) {
-                            html += `<td><div class="task">${s}</div></td>`;
-                            slotFound = true;
-                            break;
-                        } else if (typeof s === "object") {
-                            const [start, end] = s.time.split("-");
-                            const startIndex = timeSlots.findIndex(t => t.startsWith(start));
-                            const endIndex = timeSlots.findIndex(t => t.startsWith(end));
-                            const color = s.color ? s.color.toLowerCase() : "";
-                            
-                            // Determine how many slots it spans
-                            const span = endIndex > startIndex ? endIndex - startIndex : 1;
+        html += "</tr>";
+      });
+    });
 
-                            if (timeSlots[i].startsWith(start)) {
-                                html += `
-                                    <td colspan="${span}" style="background:${color || "#e0f7fa"}; color:${color ? "white" : "black"}">
-                                        <div class="task" style="background:transparent;">${s.time}: ${s.task}</div>
-                                    </td>`;
-                                i += span;
-                                slotFound = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (!slotFound) {
-                        html += "<td></td>";
-                        i++;
-                    }
-                }
-
-                html += "</tr>";
-            });
-        }
-
-        calendar.innerHTML = html;
-    })
-    .catch(err => console.error("Error loading tasks:", err));
+    calendar.innerHTML = html;
+  })
+  .catch(err => console.error("Error loading tasks:", err));
 </script>
-
-</body>
-</html>
