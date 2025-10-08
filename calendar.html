@@ -5,30 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Full Timetable</title>
 <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-    h1 { text-align: center; margin-bottom: 20px; }
-    table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
-    th { background-color: #f0f0f0; }
-    td { background-color: #fff; min-width: 80px; position: relative; }
-    .task {
-        background-color: #e0f7fa;
-        margin: 2px 0;
-        padding: 4px 6px;
-        border-radius: 6px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #000;
-    }
-    nav { text-align: center; margin-bottom: 20px; }
-    nav a { text-decoration: none; color: #007BFF; margin: 0 10px; font-weight: bold; }
+  body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+  h1 { text-align: center; margin-bottom: 20px; }
+  table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
+  th { background-color: #f0f0f0; }
+  td { background-color: #fff; min-width: 80px; position: relative; }
+  .task {
+    background-color: #e0f7fa;
+    margin: 2px 0;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+  }
+  nav { text-align: center; margin-bottom: 20px; }
+  nav a { text-decoration: none; color: #007BFF; margin: 0 10px; font-weight: bold; }
 </style>
 </head>
 <body>
 
 <nav>
-    <a href="index.html">Home</a> |
-    <a href="calendar.html">Calendar</a>
+  <a href="index.html">Home</a> |
+  <a href="calendar.html">Calendar</a>
 </nav>
 
 <h1>Full Timetable</h1>
@@ -36,8 +36,13 @@
 
 <script>
 fetch("tasks.json")
-  .then(res => res.json())
+  .then(res => {
+    if (!res.ok) throw new Error("Cannot load JSON");
+    return res.json();
+  })
   .then(data => {
+    console.log("Loaded tasks:", data); // Debug
+
     const timeSlots = ["8-9","9-10","10-11","11-12","12-1","1-2","2-3","3-4"];
     const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const calendar = document.getElementById("calendar");
@@ -47,6 +52,7 @@ fetch("tasks.json")
     const weeks = {};
     for (const date in data) {
       const entry = data[date];
+      if (!entry || !entry.slots) continue;
       const week = entry.week || "Week 1";
       if (!weeks[week]) weeks[week] = [];
       weeks[week].push({ day: entry.day, slots: entry.slots });
@@ -54,8 +60,8 @@ fetch("tasks.json")
 
     // helper to count span length
     const slotCount = (range) => {
-      const [start,end] = range.split("-").map(t=>parseInt(t));
-      return end>start ? end-start : 1;
+      const [start,end] = range.split("-").map(Number);
+      return end > start ? end - start : 1;
     };
 
     // sort weeks numerically
@@ -77,10 +83,10 @@ fetch("tasks.json")
       weeks[week].forEach(dayObj=>{
         html += `<tr><td><b>${dayObj.day}</b></td>`;
 
-        // track occupied hours
         const slotMap = {};
         dayObj.slots.forEach(slot=>{
-          const [start,end] = slot.time.split("-").map(t=>parseInt(t));
+          if (!slot.time) return;
+          const [start,end] = slot.time.split("-").map(Number);
           for(let h=start;h<end;h++) slotMap[h] = slot;
         });
 
@@ -105,9 +111,11 @@ fetch("tasks.json")
 
     calendar.innerHTML = html;
   })
-  .catch(err=>console.error("Error loading tasks:",err));
+  .catch(err => {
+    console.error("Error loading tasks:", err);
+    document.getElementById("calendar").innerHTML = "<tr><td>Error loading tasks.json</td></tr>";
+  });
 </script>
-
 
 </body>
 </html>
