@@ -4,7 +4,7 @@
     "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510", "color": "green" },
-      { "time": "12-2", "task": "MATH, 413", "color": "green" }
+      { "time": "12-14", "task": "MATH, 413", "color": "green" }
     ]
   },
   "2025-10-13": {
@@ -12,7 +12,7 @@
     "day": "Monday",
     "slots": [
       { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
-      { "time": "10-1", "task": "CSE 2, 212" }
+      { "time": "10-13", "task": "CSE 2, 212" }
     ]
   },
   "2025-10-14": {
@@ -21,8 +21,8 @@
     "slots": [
       { "time": "8-10", "task": "ENG 1, 602" },
       { "time": "10-12", "task": "PHY 2, A1: 102" },
-      { "time": "12-1", "task": "PHY 1, 603" },
-      { "time": "1-2", "task": "CHEM, 202" }
+      { "time": "12-13", "task": "PHY 1, 603" },
+      { "time": "13-14", "task": "CHEM, 202" }
     ]
   },
   "2025-10-15": {
@@ -38,9 +38,9 @@
     "slots": [
       { "time": "9-10", "task": "MATH, 603" },
       { "time": "10-12", "task": "PHY 1, 603" },
-      { "time": "12-1", "task": "ENG 1, 509" },
-      { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "PHY 2(A2), 102" }
+      { "time": "12-13", "task": "ENG 1, 509" },
+      { "time": "13-14", "task": "Spl 1, 204" },
+      { "time": "14-16", "task": "PHY 2(A2), 102" }
     ]
   },
   "2025-10-19": {
@@ -48,7 +48,7 @@
     "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510" },
-      { "time": "12-2", "task": "MATH, 413" }
+      { "time": "12-14", "task": "MATH, 413" }
     ]
   },
   "2025-10-20": {
@@ -56,7 +56,7 @@
     "day": "Monday",
     "slots": [
       { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
-      { "time": "10-1", "task": "CSE 2, 212" }
+      { "time": "10-13", "task": "CSE 2, 212" }
     ]
   },
   "2025-10-21": {
@@ -65,8 +65,8 @@
     "slots": [
       { "time": "8-10", "task": "ENG 1, 602" },
       { "time": "10-12", "task": "PHY 2, A1: 102" },
-      { "time": "12-1", "task": "PHY 1, 603" },
-      { "time": "1-2", "task": "CHEM, 202" }
+      { "time": "12-13", "task": "PHY 1, 603" },
+      { "time": "13-14", "task": "CHEM, 202" }
     ]
   },
   "2025-10-22": {
@@ -82,9 +82,9 @@
     "slots": [
       { "time": "9-10", "task": "MATH, 603" },
       { "time": "10-12", "task": "PHY 1, 603" },
-      { "time": "12-1", "task": "ENG 1, 509" },
-      { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "PHY 2(A2), 102" }
+      { "time": "12-13", "task": "ENG 1, 509" },
+      { "time": "13-14", "task": "Spl 1, 204" },
+      { "time": "14-16", "task": "PHY 2(A2), 102" }
     ]
   },
   "2025-10-26": {
@@ -92,7 +92,7 @@
     "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510" },
-      { "time": "12-2", "task": "MATH, 413" }
+      { "time": "12-14", "task": "MATH, 413" }
     ]
   },
   "2025-10-27": {
@@ -100,7 +100,7 @@
     "day": "Monday",
     "slots": [
       { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
-      { "time": "10-1", "task": "CSE 2, 212" }
+      { "time": "10-13", "task": "CSE 2, 212" }
     ]
   },
   "2025-10-28": {
@@ -109,8 +109,8 @@
     "slots": [
       { "time": "8-10", "task": "ENG 1, 602" },
       { "time": "10-12", "task": "PHY 2, A1: 102" },
-      { "time": "12-1", "task": "PHY 1, 603" },
-      { "time": "1-2", "task": "CHEM, 202" }
+      { "time": "12-13", "task": "PHY 1, 603" },
+      { "time": "13-14", "task": "CHEM, 202" }
     ]
   },
   "2025-10-29": {
@@ -126,9 +126,9 @@
     "slots": [
       { "time": "9-10", "task": "MATH, 603" },
       { "time": "10-12", "task": "PHY 1, 603" },
-      { "time": "12-1", "task": "ENG 1, 509" },
-      { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "PHY 2(A2), 102" }
+      { "time": "12-13", "task": "ENG 1, 509" },
+      { "time": "13-14", "task": "Spl 1, 204" },
+      { "time": "14-16", "task": "PHY 2(A2), 102" }
     ]
   },
   "2025-11-02": {
@@ -136,7 +136,7 @@
     "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510" },
-      { "time": "12-2", "task": "MATH, 413" }
+      { "time": "12-14", "task": "MATH, 413" }
     ]
   },
   "2025-11-03": {
@@ -144,7 +144,7 @@
     "day": "Monday",
     "slots": [
       { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
-      { "time": "10-1", "task": "CSE 2, 212" }
+      { "time": "10-13", "task": "CSE 2, 212" }
     ]
   },
   "2025-11-04": {
@@ -153,8 +153,8 @@
     "slots": [
       { "time": "8-10", "task": "ENG 1, 602" },
       { "time": "10-12", "task": "PHY 2, A1: 102" },
-      { "time": "12-1", "task": "PHY 1, 603" },
-      { "time": "1-2", "task": "CHEM, 202" }
+      { "time": "12-13", "task": "PHY 1, 603" },
+      { "time": "13-14", "task": "CHEM, 202" }
     ]
   },
   "2025-11-05": {
@@ -170,9 +170,9 @@
     "slots": [
       { "time": "9-10", "task": "MATH, 603" },
       { "time": "10-12", "task": "PHY 1, 603" },
-      { "time": "12-1", "task": "ENG 1, 509" },
-      { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "PHY 2(A2), 102" }
+      { "time": "12-13", "task": "ENG 1, 509" },
+      { "time": "13-14", "task": "Spl 1, 204" },
+      { "time": "14-16", "task": "PHY 2(A2), 102" }
     ]
   }
 }
