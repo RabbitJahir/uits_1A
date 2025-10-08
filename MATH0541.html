@@ -57,6 +57,7 @@
             align-items: center;
             gap: 20px;
             margin-top: 30px;
+            position: relative;
         }
 
         .topic {
@@ -83,7 +84,6 @@
             position: absolute;
             top: 0;
             left: 335px;
-            /* shows on the side */
             background-color: white;
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -91,7 +91,6 @@
             padding: 10px;
             width: 220px;
             display: none;
-            /* hidden by default */
         }
 
         .subtopics ul {
@@ -111,60 +110,60 @@
             border-bottom: none;
         }
 
-        /* Make sure long side lists stay visible */
-        .container {
-            position: relative;
+        /* ---- Home Box ---- */
+        .home-box {
+            background: linear-gradient(135deg, #f0f8ff, #cce7ff);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-/* the top box code*/        
-.home-box {
-    background: linear-gradient(135deg, #f0f8ff, #cce7ff);
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-.home-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-}
-.home-box h2 {
-    font-size: 24px;
-    color: #007BFF;
-    margin-bottom: 15px;
-}
-.home-box p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-}
-.home-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-.home-btn:hover {
-    background-color: #0056b3;
-}
-        
+        .home-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-box h2 {
+            font-size: 24px;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .home-box p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 
 <body>
 
     <!-- the button -->
-  <div class="home-box">
-    <h2>Welcome to Ungabunga</h2>
-    <a href="index.html" class="home-btn">Home</a>
-</div>
+    <div class="home-box">
+        <h2>Welcome to Ungabunga</h2>
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
 
     <section id="lab">
         <h1>Differential & Integral Calculus(MATH0541)</h1>
@@ -207,7 +206,6 @@
         <h1>Syllabus of Final</h1>
         <div class="container">
 
-
             <div class="topic" onclick="toggleSubtopics(1)">
                 1. Successive derivative(click me)
                 <div class="subtopics" id="sub1">
@@ -218,7 +216,6 @@
                     </ul>
                 </div>
             </div>
-
 
             <div class="topic" onclick="toggleSubtopics(2)">
                 2. Partial derivative(click me)
@@ -231,36 +228,29 @@
                 </div>
             </div>
 
-
             <div class="topic" onclick="toggleSubtopics(3)">
                 3. Multiple integration(click me)
                 <div class="subtopics" id="sub3">
-                    <ul>
-
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
 
             <div class="topic" onclick="toggleSubtopics(4)">
                 4. Integration(click me)
                 <div class="subtopics" id="sub4">
-                    <ul>
-
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
 
             <div class="topic" onclick="toggleSubtopics(5)">
                 5. Area finding(click me)
                 <div class="subtopics" id="sub5">
-                    <ul>
-
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
 
             <div class="topic" onclick="toggleSubtopics(6)">
-                6. Rolles and mean theoram(click me)
+                6. Rolles and mean theorem(click me)
                 <div class="subtopics" id="sub6">
                     <ul>
                         <li><b>Rolles</b></li>
@@ -284,35 +274,28 @@
             <div class="topic" onclick="toggleSubtopics(7)">
                 7. Beta and gamma function(click me)
                 <div class="subtopics" id="sub7">
-                    <ul>
-
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
 
             <div class="topic" onclick="toggleSubtopics(8)">
                 8. Differential and Integral Calculus(click me)
                 <div class="subtopics" id="sub8">
-                    <ul>
-
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
 
             <div class="topic" onclick="toggleSubtopics(9)">
                 9.Absolute maxima and minima(click me)
                 <div class="subtopics" id="sub9">
-                    <ul>
-
-                    </ul>
+                    <ul></ul>
                 </div>
             </div>
 
         </div>
     </section>
 
-
-     <script>
+    <script>
         // -------- Store Marks for "Mark Distribution in Class" --------
         const classInputs = document.querySelectorAll('#lab table input');
 
@@ -325,18 +308,17 @@
             });
         });
 
-         // Toggle subtopics visibility
-    function toggleSubtopics(num) {
-        const selected = document.getElementById("sub" + num);
-        const all = document.querySelectorAll(".subtopics");
+        // -------- Syllabus Subtopic Toggle --------
+        function toggleSubtopics(num) {
+            const selected = document.getElementById("sub" + num);
+            const all = document.querySelectorAll(".subtopics");
 
-        all.forEach(sub => {
-            if (sub !== selected) sub.style.display = "none"; // hide others
-        });
+            all.forEach(sub => {
+                if (sub !== selected) sub.style.display = "none";
+            });
 
-        // Toggle the clicked one
-        selected.style.display = (selected.style.display === "block") ? "none" : "block";
-    }
+            selected.style.display = (selected.style.display === "block") ? "none" : "block";
+        }
     </script>
 
 </body>
