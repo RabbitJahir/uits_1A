@@ -4,7 +4,7 @@
     "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510", "color": "green" },
-      { "time": "12-14", "task": "MATH, 413", "color": "green" }
+      { "time": "12-14", "task": "MATH, 413" }
     ]
   },
   "2025-10-13": {
