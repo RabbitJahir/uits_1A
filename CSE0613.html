@@ -12,7 +12,6 @@
             padding: 0;
         }
 
-        /* ---- General Section Layout ---- */
         section {
             width: 100%;
             display: flex;
@@ -21,7 +20,6 @@
             padding: 40px 0;
         }
 
-        /* ---- Table Section ---- */
         table {
             border-collapse: collapse;
             width: 400px;
@@ -46,7 +44,6 @@
             background-color: #f9f9f9;
         }
 
-        /* ---- Syllabus Section ---- */
         h1 {
             text-align: center;
             color: #2b3e50;
@@ -80,7 +77,6 @@
             transform: scale(1.03);
         }
 
-        /* ---- Subtopic Box ---- */
         .subtopics {
             position: absolute;
             top: 0;
@@ -111,7 +107,6 @@
             border-bottom: none;
         }
 
-        /* ---- Home Box ---- */
         .home-box {
             background: linear-gradient(135deg, #f0f8ff, #cce7ff);
             border-radius: 15px;
@@ -175,7 +170,7 @@
             <tr>
                 <td>Class Test/Assignment<br>(Avg of before & after mid)</td>
                 <td>10+10</td>
-                <td><input type="text" placeholder="keep a screenshot"></td>
+                <td><input type="text" placeholder="Keep a screenshot"></td>
             </tr>
             <tr>
                 <td>Mid Term</td>
@@ -197,7 +192,8 @@
         <h2>Mark Distribution in Lab</h2>
         <table>
             <tr>
-                <th colspan="2">Mark Distribution</th>
+                <th>Mark Item</th>
+                <th>Marks</th>
             </tr>
             <tr>
                 <td>Lab Attendance/Performance</td>
@@ -205,12 +201,10 @@
             </tr>
             <tr>
                 <td>Lab Performance</td>
-                <td>10</td>
                 <td><input type="text" placeholder="Type here"></td>
             </tr>
             <tr>
-                <td>Test<br>(Avg of before & after mid)</td>
-                <td>15+15</td>
+                <td>Test (Avg of before & after mid)</td>
                 <td><input type="text" placeholder="Type here"></td>
             </tr>
             <tr>
@@ -219,22 +213,18 @@
             </tr>
             <tr>
                 <td>Viva</td>
-                <td>20</td>
                 <td><input type="text" placeholder="Type here"></td>
             </tr>
             <tr>
                 <td>Lab Report</td>
-                <td>10</td>
                 <td><input type="text" placeholder="Type here"></td>
             </tr>
             <tr>
                 <td>Presentation</td>
-                <td>10</td>
                 <td><input type="text" placeholder="Type here"></td>
             </tr>
             <tr>
                 <td><strong>Total</strong></td>
-                <td>100</td>
                 <td><input type="text" placeholder="Type here"></td>
             </tr>
         </table>
@@ -269,45 +259,37 @@
         </div>
     </section>
 
-    <!-- Scripts -->
     <script>
-        // -------- Store Marks for "Mark Distribution in Class" --------
+        // -------- Store Marks for Class Table --------
         const classInputs = document.querySelectorAll('#lab table:nth-of-type(1) input');
-
         classInputs.forEach((input, index) => {
             const saved = localStorage.getItem('classMark' + index);
             if (saved) input.value = saved;
-
             input.addEventListener('input', () => {
                 localStorage.setItem('classMark' + index, input.value);
             });
         });
 
-        // -------- Store Marks for "Mark Distribution in Lab" --------
+        // -------- Store Marks for Lab Table --------
         const labInputs = document.querySelectorAll('#lab table:nth-of-type(2) input');
-
         labInputs.forEach((input, index) => {
             const saved = localStorage.getItem('labMark' + index);
             if (saved) input.value = saved;
-
             input.addEventListener('input', () => {
                 localStorage.setItem('labMark' + index, input.value);
             });
         });
 
-        // -------- Syllabus Subtopic Toggle --------
+        // -------- Syllabus Toggle --------
         function toggleSubtopics(num) {
             const selected = document.getElementById("sub" + num);
             const all = document.querySelectorAll(".subtopics");
-
             all.forEach(sub => {
                 if (sub !== selected) sub.style.display = "none";
             });
-
             selected.style.display = (selected.style.display === "block") ? "none" : "block";
         }
     </script>
 
 </body>
-
 </html>
