@@ -11,9 +11,8 @@
     "week": "Week 13",
     "day": "Monday",
     "slots": [
-      { "time": "8-10", "task": "CSE 1, 512" },
-      { "time": "10-1", "task": "CSE 2, 212" },
-      { "time": "8-10", "task": "ENG 2, A1: 510, 2: 603" }
+      { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
+      { "time": "10-1", "task": "CSE 2, 212" }
     ]
   },
   "2025-10-14": {
@@ -30,7 +29,7 @@
     "week": "Week 13",
     "day": "Wednesday",
     "slots": [
-      { "time": "8-4", "task": "Off day mferrrr" }
+      { "time": "8-16", "task": "Off day mferrrr" }
     ]
   },
   "2025-10-16": {
@@ -41,7 +40,7 @@
       { "time": "10-12", "task": "PHY 1, 603" },
       { "time": "12-1", "task": "ENG 1, 509" },
       { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "Phy 2(A2), 102" }
+      { "time": "2-4", "task": "PHY 2(A2), 102" }
     ]
   },
 
@@ -50,24 +49,23 @@
     "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510" },
-      { "time": "12-2", "task": "MATH, 413"}
+      { "time": "12-2", "task": "MATH, 413" }
     ]
   },
   "2025-10-20": {
     "week": "Week 14",
     "day": "Monday",
     "slots": [
-      { "time": "8-10", "task": "CSE 1, 512" },
-      { "time": "10-1", "task": "CSE 2, 212" },
-      { "time": "8-10", "task": "ENG 2, A1: 510, 2: 603" }
+      { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
+      { "time": "10-1", "task": "CSE 2, 212" }
     ]
   },
   "2025-10-21": {
     "week": "Week 14",
     "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602", },
-      { "time": "10-12", "task": "PHY 2, A1: 102", },
+      { "time": "8-10", "task": "ENG 1, 602" },
+      { "time": "10-12", "task": "PHY 2, A1: 102" },
       { "time": "12-1", "task": "PHY 1, 603" },
       { "time": "1-2", "task": "CHEM, 202" }
     ]
@@ -76,7 +74,7 @@
     "week": "Week 14",
     "day": "Wednesday",
     "slots": [
-      { "time": "8-4", "task": "Off day mferrrr" }
+      { "time": "8-16", "task": "Off day mferrrr" }
     ]
   },
   "2025-10-23": {
@@ -87,7 +85,7 @@
       { "time": "10-12", "task": "PHY 1, 603" },
       { "time": "12-1", "task": "ENG 1, 509" },
       { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "Phy 2(A2), 102" }
+      { "time": "2-4", "task": "PHY 2(A2), 102" }
     ]
   },
 
@@ -103,9 +101,8 @@
     "week": "Week 15",
     "day": "Monday",
     "slots": [
-      { "time": "8-10", "task": "CSE 1, 512" },
-      { "time": "10-1", "task": "CSE 2, 212" },
-      { "time": "8-10", "task": "ENG 2, A1: 510, 2: 603" }
+      { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
+      { "time": "10-1", "task": "CSE 2, 212" }
     ]
   },
   "2025-10-28": {
@@ -122,7 +119,7 @@
     "week": "Week 15",
     "day": "Wednesday",
     "slots": [
-      { "time": "8-4", "task": "Off day mferrrr" }
+      { "time": "8-16", "task": "Off day mferrrr" }
     ]
   },
   "2025-10-30": {
@@ -133,7 +130,7 @@
       { "time": "10-12", "task": "PHY 1, 603" },
       { "time": "12-1", "task": "ENG 1, 509" },
       { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "Phy 2(A2), 102" }
+      { "time": "2-4", "task": "PHY 2(A2), 102" }
     ]
   },
 
@@ -149,9 +146,8 @@
     "week": "Week 16",
     "day": "Monday",
     "slots": [
-      { "time": "8-10", "task": "CSE 1, 512" },
-      { "time": "10-1", "task": "CSE 2, 212" },
-      { "time": "8-10", "task": "ENG 2, A1: 510, 2: 603" }
+      { "time": "8-10", "task": "CSE 1, 512 / ENG 2, A1: 510, 2:603" },
+      { "time": "10-1", "task": "CSE 2, 212" }
     ]
   },
   "2025-11-04": {
@@ -168,7 +164,7 @@
     "week": "Week 16",
     "day": "Wednesday",
     "slots": [
-      { "time": "8-4", "task": "Off day mferrrr" }
+      { "time": "8-16", "task": "Off day mferrrr" }
     ]
   },
   "2025-11-06": {
@@ -179,7 +175,7 @@
       { "time": "10-12", "task": "PHY 1, 603" },
       { "time": "12-1", "task": "ENG 1, 509" },
       { "time": "1-2", "task": "Spl 1, 204" },
-      { "time": "2-4", "task": "Phy 2(A2), 102" }
+      { "time": "2-4", "task": "PHY 2(A2), 102" }
     ]
   }
 }
