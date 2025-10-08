@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full Timetable</title>
+<style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+    h1 { text-align: center; margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
+    th { background-color: #f0f0f0; }
+    td { background-color: #fff; min-width: 80px; }
+    .task { background-color: #e0f7fa; margin: 2px 0; padding: 2px 4px; border-radius: 4px; font-size: 13px; }
+    nav { text-align: center; margin-bottom: 20px; }
+    nav a { text-decoration: none; color: #007BFF; margin: 0 10px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a> |
+    <a href="calendar.html">Calendar</a>
+</nav>
+
+<h1>Full Timetable</h1>
+<table id="calendar">
+    <!-- Table will be generated here -->
+</table>
+
+<script>
+    fetch("tasks.json")
+        .then(res => res.json())
+        .then(data => {
+            const timeSlots = ["8-9","9-10","10-11","11-12","12-1","1-2","2-3","3-4"];
+            const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            const calendar = document.getElementById("calendar");
+            let html = "";
+
+            // Generate table per week
+            let weeks = {};
+            // Group data by week number if you include week numbers in JSON
+            for (let date in data) {
+                const week = data[date].week || "Week 1"; // default Week 1 if no week info
+                if (!weeks[week]) weeks[week] = [];
+                weeks[week].push({ date, day: data[date].day, slots: data[date].slots });
+            }
+
+            for (let week in weeks) {
+                html += `<tr><th colspan="${timeSlots.length+1}">${week}</th></tr>`;
+                // Header row for time slots
+                html += "<tr><th>Day</th>";
+                timeSlots.forEach(slot => html += `<th>${slot}</th>`);
+                html += "</tr>";
+
+                // Rows per day
+                weeks[week].sort((a,b) => daysOfWeek.indexOf(a.day) - daysOfWeek.indexOf(b.day));
+                weeks[week].forEach(dayObj => {
+                    html += `<tr><td>${dayObj.day}</td>`;
+                    timeSlots.forEach(slot => {
+                        const task = dayObj.slots.find(s => s.startsWith(slot));
+                        html += `<td>${task ? `<div class="task">${task}</div>` : ""}</td>`;
+                    });
+                    html += "</tr>";
+                });
+            }
+
+            calendar.innerHTML = html;
+        })
+        .catch(err => console.error("Error loading tasks:", err));
+</script>
+
+</body>
+</html>
