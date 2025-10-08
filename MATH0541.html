@@ -324,6 +324,19 @@
                 localStorage.setItem('mathMark' + index, input.value);
             });
         });
+
+         // Toggle subtopics visibility
+    function toggleSubtopics(num) {
+        const selected = document.getElementById("sub" + num);
+        const all = document.querySelectorAll(".subtopics");
+
+        all.forEach(sub => {
+            if (sub !== selected) sub.style.display = "none"; // hide others
+        });
+
+        // Toggle the clicked one
+        selected.style.display = (selected.style.display === "block") ? "none" : "block";
+    }
     </script>
 
 </body>
