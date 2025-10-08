@@ -213,6 +213,22 @@
         </table>
     </section>
 
+    <script>
+    // Select all table input fields
+    const inputs = document.querySelectorAll('table input');
+
+    inputs.forEach((input, index) => {
+        // Load saved value from LocalStorage
+        const savedValue = localStorage.getItem('mark' + index);
+        if(savedValue) input.value = savedValue;
+
+        // Save value to LocalStorage on input
+        input.addEventListener('input', () => {
+            localStorage.setItem('mark' + index, input.value);
+        });
+    });
+</script>
+
     <!-- SECTION 2: Syllabus of Final -->
     <section id="syllabus">
         <h1>Syllabus of Final</h1>
