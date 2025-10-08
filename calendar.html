@@ -12,7 +12,6 @@
   th { background-color: #f0f0f0; }
   td { background-color: #fff; min-width: 80px; position: relative; }
   .task { 
-    background-color: #e0f7fa; 
     margin: 2px 0; 
     padding: 4px 6px; 
     border-radius: 6px; 
@@ -37,12 +36,10 @@
 <table id="calendar"></table>
 
 <script>
-function parseSlotTime(time) {
-  // Convert 12-hour style to 24-hour for internal calculations
-  let [start, end] = time.split("-").map(t => parseInt(t, 10));
-  if (start < 8) start += 12;   // afternoon
-  if (end <= start) end += 12;  // handle 12-1 or 1-2
-  return [start, end];
+function format12Hour(hour) {
+  const suffix = hour >= 12 ? "PM" : "AM";
+  const h = hour % 12 === 0 ? 12 : hour % 12;
+  return `${h}${suffix}`;
 }
 
 fetch("tasks.json")
@@ -53,7 +50,7 @@ fetch("tasks.json")
   .then(data => {
     if(!data || Object.keys(data).length === 0) throw new Error("tasks.json is empty or invalid");
 
-    const timeSlots = ["8-9","9-10","10-11","11-12","12-1","1-2","2-3","3-4"];
+    const timeSlots = [8,9,10,11,12,13,14,15]; // 8AM to 4PM
     const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     const calendar = document.getElementById("calendar");
     let html = "";
@@ -62,23 +59,19 @@ fetch("tasks.json")
     const weeks = {};
     for (const date in data) {
       const entry = data[date];
-      if(!entry.day || !entry.slots) continue; // skip invalid
+      if(!entry.day || !entry.slots) continue;
       const week = entry.week || "Week 1";
       if (!weeks[week]) weeks[week] = [];
       weeks[week].push({ day: entry.day, slots: entry.slots });
     }
 
-    if(Object.keys(weeks).length === 0) throw new Error("No valid week entries in JSON");
-
     // sort weeks numerically
-    const sortedWeeks = Object.keys(weeks).sort((a,b) => 
-      parseInt(a.replace("Week","")) - parseInt(b.replace("Week",""))
-    );
+    const sortedWeeks = Object.keys(weeks).sort((a,b) => parseInt(a.replace("Week","")) - parseInt(b.replace("Week","")));
 
     sortedWeeks.forEach(week => {
       html += `<tr><th colspan="${timeSlots.length+1}" style="background:#e9ecef">${week}</th></tr>`;
       html += "<tr><th>Day</th>";
-      timeSlots.forEach(t => html += `<th>${t}</th>`);
+      timeSlots.forEach(t => html += `<th>${format12Hour(t)}-${format12Hour(t+1)}</th>`);
       html += "</tr>";
 
       // sort days in order
@@ -90,8 +83,8 @@ fetch("tasks.json")
         // track occupied hours
         const slotMap = {};
         dayObj.slots.forEach(slot => {
-          if(!slot.time || !slot.task) return; // skip invalid
-          const [start,end] = parseSlotTime(slot.time);
+          if(!slot.time || !slot.task) return;
+          const [start,end] = slot.time.split("-").map(Number);
           for(let h=start; h<end; h++) slotMap[h] = slot;
         });
 
@@ -99,7 +92,7 @@ fetch("tasks.json")
         while(hour < 16){
           const slot = slotMap[hour];
           if(slot){
-            const [start,end] = parseSlotTime(slot.time);
+            const [start,end] = slot.time.split("-").map(Number);
             const span = Math.min(end,16) - hour;
             const colorStyle = slot.color
               ? `background:${slot.color};color:white;border-radius:6px;`
