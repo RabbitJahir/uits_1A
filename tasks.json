@@ -1,5 +1,11 @@
 {
-  "2025-10-08": { "week": "Week 1", "day": "Sunday", "slots": ["8-9: Math", "9-10: English"] },
-  "2025-10-09": { "week": "Week 1", "day": "Monday", "slots": ["8-9: Chemistry", "9-10: Math"] },
-  "2025-10-15": { "week": "Week 2", "day": "Sunday", "slots": ["8-9: Physics"] }
+  "2025-10-08": { "week": "Week 12", "day": "Wednesday", "slots": [] },
+  "2025-10-09": { "week": "Week 12", "day": "Thursday", "slots": [] },
+  
+  "2025-10-12": { "week": "Week 13", "day": "Sunday", "slots": ["8-9: Physics"] }
+  "2025-10-08": { "week": "Week 13", "day": "Monday", "slots": [] },
+  "2025-10-09": { "week": "Week 13", "day": "Tuesday", "slots": [] },
+  "2025-10-12": { "week": "Week 13", "day": "Wednesday", "slots": ["8-9: yo, 9-10: yo"] }
+  "2025-10-12": { "week": "Week 13", "day": "Thursday", "slots": ["8-9: Physics"] }
+  
 }
