@@ -5,13 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Full Timetable with Subtopics</title>
 <style>
-  
   body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
   h1 { text-align: center; margin-bottom: 20px; }
   table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
   th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
   th { background-color: #f0f0f0; }
-  td { min-width: 80px; position: relative; cursor: pointer; }
+  td { min-width: 80px; position: relative; cursor: pointer; overflow: visible; }
   .task { 
     margin: 2px 0; 
     padding: 4px 6px; 
@@ -19,6 +18,9 @@
     font-size: 13px; 
     font-weight: 500; 
     color: #000; 
+    position: relative;
+    overflow: visible;
+    z-index: 1;
   }
   .subtopic-panel {
     display: none;
@@ -28,14 +30,15 @@
     background: #fff;
     border: 1px solid #ccc;
     padding: 6px;
-    width: 150px;
-    z-index: 10;
+    width: 200px;
+    z-index: 100;
     text-align: left;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
   .subtopic-panel ul { margin: 0; padding-left: 18px; }
 
-/* the top box code */
-.home-box {
+  /* Top box */
+  .home-box {
     background: linear-gradient(135deg, #f0f8ff, #cce7ff);
     border-radius: 15px;
     padding: 30px;
@@ -44,22 +47,22 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-}
-.home-box:hover {
+  }
+  .home-box:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-}
-.home-box h2 {
+  }
+  .home-box h2 {
     font-size: 24px;
     color: #007BFF;
     margin-bottom: 15px;
-}
-.home-box p {
+  }
+  .home-box p {
     font-size: 16px;
     color: #333;
     margin-bottom: 20px;
-}
-.home-btn {
+  }
+  .home-btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007BFF;
@@ -68,20 +71,19 @@
     border-radius: 8px;
     font-weight: bold;
     transition: background-color 0.3s;
-}
-.home-btn:hover {
+  }
+  .home-btn:hover {
     background-color: #0056b3;
-}
-  
+  }
 </style>
 </head>
 <body>
 
   <!-- Home Button -->
-    <div class="home-box">
-        <h2>Welcome to Ungabunga</h2>
-        <a href="index.html" class="home-btn">Home</a>
-    </div>
+  <div class="home-box">
+      <h2>Welcome to Ungabunga</h2>
+      <a href="index.html" class="home-btn">Home</a>
+  </div>
 
 <h1>Full Timetable</h1>
 <table id="calendar"></table>
@@ -138,7 +140,6 @@ fetch("tasks.json")
             const [start,end] = slot.time.split("-").map(Number);
             const span = Math.min(end,16)-hour;
             const colorStyle = slot.color ? `background:${slot.color};color:white;border-radius:6px;` : `background:#e0f7fa;`;
-            // Add data-subtopics attribute
             const subtopics = slot.subtopics ? slot.subtopics.join("|") : "";
             html += `<td colspan="${span}" style="${colorStyle}" class="task" data-subtopics="${subtopics}">${slot.task}</td>`;
             hour += span;
@@ -153,10 +154,10 @@ fetch("tasks.json")
 
     calendar.innerHTML = html;
 
-    // Add click listener to show subtopics
+    // Show subtopics on click
     document.querySelectorAll(".task").forEach(td => {
       td.addEventListener("click", e => {
-        // remove existing panels
+        // Remove existing panels
         document.querySelectorAll(".subtopic-panel").forEach(panel => panel.remove());
         const subtopics = td.dataset.subtopics;
         if(!subtopics) return;
@@ -167,7 +168,7 @@ fetch("tasks.json")
         td.appendChild(panel);
         panel.style.display = "block";
 
-        // Click outside to close
+        // Close on outside click
         document.addEventListener("click", function handler(ev){
           if(!td.contains(ev.target)){
             panel.remove();
