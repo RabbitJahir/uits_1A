@@ -57,6 +57,36 @@
   "2025-09-05": { "week": "Week 7", "day": "Monday", "slots": [ { "time": "8-10", "task": "CSE 1, 512" }, { "time": "10-13", "task": "CSE 2, 212" }, { "time": "13-15", "task": "ENG 2, A1: 510, A2:603" } ] },
   "2025-09-06": { "week": "Week 7", "day": "Tuesday", "slots": [ { "time": "8-10", "task": "ENG 1, 602" }, { "time": "10-12", "task": "PHY 2(A1), 102" }, { "time": "12-13", "task": "PHY 1, 603" }, { "time": "13-14", "task": "CHEM, 202" } ] },
   "2025-09-07": { "week": "Week 7", "day": "Wednesday", "slots": [ { "time": "8-16", "task": "Off day mferrrr" } ] },
-  "2025-09-08": { "week": "Week 7", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] }
+  "2025-09-08": { "week": "Week 7", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] },
+
+  "2025-08-28": { "week": "Week 6", "day": "Sunday", "slots": [ { "time": "10-12", "task": "CHEM, 510" }, { "time": "12-14", "task": "MATH, 413" } ] },
+  "2025-08-29": { "week": "Week 6", "day": "Monday", "slots": [ { "time": "8-10", "task": "CSE 1, 512" }, { "time": "10-13", "task": "CSE 2, 212" }, { "time": "13-15", "task": "ENG 2, A1: 510, A2:603" } ] },
+  "2025-08-30": { "week": "Week 6", "day": "Tuesday", "slots": [ { "time": "8-10", "task": "ENG 1, 602" }, { "time": "10-12", "task": "PHY 2(A1), 102" }, { "time": "12-13", "task": "PHY 1, 603" }, { "time": "13-14", "task": "CHEM, 202" } ] },
+  "2025-08-31": { "week": "Week 6", "day": "Wednesday", "slots": [ { "time": "8-16", "task": "Off day mferrrr" } ] },
+  "2025-09-01": { "week": "Week 6", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] },
+
+  "2025-08-21": { "week": "Week 5", "day": "Sunday", "slots": [ { "time": "10-12", "task": "CHEM, 510" }, { "time": "12-14", "task": "MATH, 413" } ] },
+  "2025-08-22": { "week": "Week 5", "day": "Monday", "slots": [ { "time": "8-10", "task": "CSE 1, 512" }, { "time": "10-13", "task": "CSE 2, 212" }, { "time": "13-15", "task": "ENG 2, A1: 510, A2:603" } ] },
+  "2025-08-23": { "week": "Week 5", "day": "Tuesday", "slots": [ { "time": "8-10", "task": "ENG 1, 602" }, { "time": "10-12", "task": "PHY 2(A1), 102" }, { "time": "12-13", "task": "PHY 1, 603" }, { "time": "13-14", "task": "CHEM, 202" } ] },
+  "2025-08-24": { "week": "Week 5", "day": "Wednesday", "slots": [ { "time": "8-16", "task": "Off day mferrrr" } ] },
+  "2025-08-25": { "week": "Week 5", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] },
+
+  "2025-08-14": { "week": "Week 4", "day": "Sunday", "slots": [ { "time": "10-12", "task": "CHEM, 510" }, { "time": "12-14", "task": "MATH, 413" } ] },
+  "2025-08-15": { "week": "Week 4", "day": "Monday", "slots": [ { "time": "8-10", "task": "CSE 1, 512" }, { "time": "10-13", "task": "CSE 2, 212" }, { "time": "13-15", "task": "ENG 2, A1: 510, A2:603" } ] },
+  "2025-08-16": { "week": "Week 4", "day": "Tuesday", "slots": [ { "time": "8-10", "task": "ENG 1, 602" }, { "time": "10-12", "task": "PHY 2(A1), 102" }, { "time": "12-13", "task": "PHY 1, 603" }, { "time": "13-14", "task": "CHEM, 202" } ] },
+  "2025-08-17": { "week": "Week 4", "day": "Wednesday", "slots": [ { "time": "8-16", "task": "Off day mferrrr" } ] },
+  "2025-08-18": { "week": "Week 4", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] },
+
+  "2025-08-07": { "week": "Week 3", "day": "Sunday", "slots": [ { "time": "10-12", "task": "CHEM, 510" }, { "time": "12-14", "task": "MATH, 413" } ] },
+  "2025-08-08": { "week": "Week 3", "day": "Monday", "slots": [ { "time": "8-10", "task": "CSE 1, 512" }, { "time": "10-13", "task": "CSE 2, 212" }, { "time": "13-15", "task": "ENG 2, A1: 510, A2:603" } ] },
+  "2025-08-09": { "week": "Week 3", "day": "Tuesday", "slots": [ { "time": "8-10", "task": "ENG 1, 602" }, { "time": "10-12", "task": "PHY 2(A1), 102" }, { "time": "12-13", "task": "PHY 1, 603" }, { "time": "13-14", "task": "CHEM, 202" } ] },
+  "2025-08-10": { "week": "Week 3", "day": "Wednesday", "slots": [ { "time": "8-16", "task": "Off day mferrrr" } ] },
+  "2025-08-11": { "week": "Week 3", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] },
+
+  "2025-07-30": { "week": "Week 2", "day": "Sunday", "slots": [ { "time": "10-12", "task": "CHEM, 510" }, { "time": "12-14", "task": "MATH, 413" } ] },
+  "2025-08-01": { "week": "Week 2", "day": "Monday", "slots": [ { "time": "8-10", "task": "CSE 1, 512" }, { "time": "10-13", "task": "CSE 2, 212" }, { "time": "13-15", "task": "ENG 2, A1: 510, A2:603" } ] },
+  "2025-08-02": { "week": "Week 2", "day": "Tuesday", "slots": [ { "time": "8-10", "task": "ENG 1, 602" }, { "time": "10-12", "task": "PHY 2(A1), 102" }, { "time": "12-13", "task": "PHY 1, 603" }, { "time": "13-14", "task": "CHEM, 202" } ] },
+  "2025-08-03": { "week": "Week 2", "day": "Wednesday", "slots": [ { "time": "8-16", "task": "Off day mferrrr" } ] },
+  "2025-08-04": { "week": "Week 2", "day": "Thursday", "slots": [ { "time": "9-10", "task": "MATH, 603" }, { "time": "10-12", "task": "PHY 1, 603" }, { "time": "12-13", "task": "ENG 1, 509" }, { "time": "13-14", "task": "Spl 1, 509" }, { "time": "14-16", "task": "PHY 2(A2), 102" } ] }
 
 }
