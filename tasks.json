@@ -172,7 +172,7 @@
       { "time": "10-12", "task": "PHY 1, 603", "color": "green", "subtopics": ["Theory of Kinetic theory of gases", "Equation of derivation of Kinetic theory of gases"]},
       { "time": "12-13", "task": "ENG 1, 509", "color": "green", "subtopics": ["Khata dekhayse(MID)"]},
       { "time": "13-14", "task": "Spl 1, 509", "color": "green", "subtopics": ["Khata dekhayse(MID)(CT_1)"]},
-      { "time": "14-16", "task": "PHY 2(A2), 102", "color": "red", "subtopics": ["hoy nai"]}
+      { "time": "14-16", "task": "PHY 2(A2), 102", "color": "red", "subtopics": ["hoy nai"] }
     ]
   }
 
