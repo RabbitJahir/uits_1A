@@ -3,163 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Full Timetable with Subtopics</title>
+<title>Class Calendar</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-  h1 { text-align: center; margin-bottom: 20px; }
-  table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; table-layout: fixed; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; word-wrap: break-word; }
-  th { background-color: #f0f0f0; }
-  td.task { position: relative; cursor: pointer; }
-  .subtopic-panel {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 6px;
-    width: 180px;
-    z-index: 10;
-    text-align: left;
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    padding: 20px;
+    margin: 0;
   }
-  .subtopic-panel ul { margin: 0; padding-left: 18px; }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px){
-    table, th, td { font-size: 12px; }
-    .subtopic-panel { width: 140px; }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  td.green { background-color: #c8f7c5; }
+  td.red { background-color: #f7c5c5; }
+  td:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
   }
 
-  /* Home Box */
-  .home-box {
-    background: linear-gradient(135deg, #f0f8ff, #cce7ff);
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+  /* Subtopic popup */
+  #popup {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    max-width: 90%;
+    width: 400px;
+    z-index: 1000;
   }
-  .home-box:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.2); }
-  .home-box h2 { font-size: 24px; color: #007BFF; margin-bottom: 15px; }
-  .home-box p { font-size: 16px; color: #333; margin-bottom: 20px; }
-  .home-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
+  #popup h3 {
+    margin-bottom: 10px;
+  }
+  #popup ul {
+    list-style: disc;
+    margin-left: 20px;
+    text-align: left;
+  }
+  #popup button {
+    background: #4CAF50;
     color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
   }
-  .home-btn:hover { background-color: #0056b3; }
+  #popup button:hover {
+    background: #45a049;
+  }
 </style>
 </head>
 <body>
 
-<div class="home-box">
-  <h2>Welcome to Ungabunga</h2>
-  <a href="index.html" class="home-btn">Home</a>
+<h1>Weekly Class Calendar</h1>
+<table id="calendar">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Day</th>
+      <th>Time</th>
+      <th>Task</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div id="popup">
+  <h3>Subtopics</h3>
+  <div id="subtopics"></div>
+  <button onclick="closePopup()">Close</button>
 </div>
 
-<h1>Full Timetable</h1>
-<table id="calendar"></table>
-
 <script>
-function format12Hour(hour) {
-  const suffix = hour >= 12 ? "PM" : "AM";
-  const h = hour % 12 === 0 ? 12 : hour % 12;
-  return `${h}${suffix}`;
+async function loadCalendar() {
+  try {
+    const res = await fetch('tasks.json');
+    const data = await res.json();
+    const tbody = document.querySelector('#calendar tbody');
+    tbody.innerHTML = '';
+
+    const dates = Object.keys(data).sort((a,b) => new Date(b) - new Date(a));
+
+    dates.forEach(date => {
+      const entry = data[date];
+      entry.slots.forEach(slot => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${entry.week}</td>
+          <td>${entry.day}</td>
+          <td>${slot.time}</td>
+          <td class="task ${slot.color || ''}" data-subtopics='${JSON.stringify(slot.subtopics || [])}'>
+            ${slot.task}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    });
+
+    // make every cell clickable
+    document.querySelectorAll('.task').forEach(td => {
+      td.addEventListener('click', () => {
+        const subs = JSON.parse(td.dataset.subtopics);
+        const subDiv = document.getElementById('subtopics');
+        if (subs.length > 0) {
+          subDiv.innerHTML = '<ul>' + subs.map(s => `<li>${s}</li>`).join('') + '</ul>';
+        } else {
+          subDiv.innerHTML = '<p><i>No subtopics available</i></p>';
+        }
+        document.getElementById('popup').style.display = 'block';
+      });
+    });
+
+  } catch (err) {
+    console.error('Error loading tasks.json:', err);
+  }
 }
 
-fetch("tasks.json")
-.then(res => res.json())
-.then(data => {
-  const timeSlots = [8,9,10,11,12,13,14,15];
-  const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-  const calendar = document.getElementById("calendar");
-  let html = "";
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+}
 
-  // Organize by week
-  const weeks = {};
-  for(const date in data){
-    const entry = data[date];
-    if(!entry.day || !entry.slots) continue;
-    const week = entry.week || "Week 1";
-    if(!weeks[week]) weeks[week] = [];
-    weeks[week].push({ date, day: entry.day, slots: entry.slots });
-  }
-
-  const sortedWeeks = Object.keys(weeks).sort(
-    (a,b) => parseInt(b.replace("Week","")) - parseInt(a.replace("Week",""))
-  );
-
-  sortedWeeks.forEach(week => {
-    html += `<tr><th colspan="${timeSlots.length+2}" style="background:#007BFF;color:white;">${week}</th></tr>`;
-    html += "<tr><th>Day</th><th>Date</th>";
-    timeSlots.forEach(t => html += `<th>${format12Hour(t)}-${format12Hour(t+1)}</th>`);
-    html += "</tr>";
-
-    weeks[week].sort((a,b) => daysOfWeek.indexOf(a.day)-daysOfWeek.indexOf(b.day));
-
-    weeks[week].forEach(dayObj => {
-      html += `<tr><td><b>${dayObj.day}</b></td><td>${dayObj.date}</td>`;
-      const slotMap = {};
-      dayObj.slots.forEach(slot => {
-        if(!slot.time || !slot.task) return;
-        const [start,end] = slot.time.split("-").map(Number);
-        slotMap[start] = { slot, span: end-start };
-      });
-
-      let hour = 8;
-      while(hour < 16){
-        if(slotMap[hour]){
-          const {slot, span} = slotMap[hour];
-          const colorStyle = slot.color ? `background:${slot.color};color:white;border-radius:6px;cursor:pointer;` 
-                                        : `background:#e0f7fa;cursor:pointer;`;
-          const subtopics = slot.subtopics ? JSON.stringify(slot.subtopics) : "";
-          html += `<td colspan="${span}" class="task" style="${colorStyle}" data-subtopics='${subtopics}'>${slot.task}</td>`;
-          hour += span;
-        } else {
-          html += "<td></td>";
-          hour++;
-        }
-      }
-
-      html += "</tr>";
-    });
-  });
-
-  calendar.innerHTML = html;
-
-  // Click listener for subtopics
-  document.querySelectorAll(".task").forEach(td => {
-    td.addEventListener("click", e => {
-      document.querySelectorAll(".subtopic-panel").forEach(panel => panel.remove());
-      const subtopicsStr = td.dataset.subtopics;
-      if(!subtopicsStr) return;
-      let subtopics = [];
-      try { subtopics = JSON.parse(subtopicsStr); } catch(e){}
-      if(subtopics.length === 0) return;
-
-      const panel = document.createElement("div");
-      panel.classList.add("subtopic-panel");
-      panel.innerHTML = "<ul>" + subtopics.map(s => `<li>${s}</li>`).join("") + "</ul>";
-      td.appendChild(panel);
-      panel.style.display = "block";
-
-      document.addEventListener("click", function handler(ev){
-        if(!td.contains(ev.target)){
-          panel.remove();
-          document.removeEventListener("click", handler);
-        }
-      });
-    });
-  });
-});
+// Load when page opens
+loadCalendar();
 </script>
 
 </body>
