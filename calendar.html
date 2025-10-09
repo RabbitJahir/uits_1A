@@ -3,232 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Full Timetable with Subtopics</title>
+<title>1A Class Calendar</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f9f9f9;
-  }
+  body { font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; }
+  h2 { text-align: center; margin-bottom: 15px; }
+  table { border-collapse: collapse; width: 100%; text-align: center; table-layout: fixed; }
+  th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; }
+  .week-header td { background-color: #0fcccc; font-weight: bold; text-align: center; }
+  .day-row td:first-child { font-weight: bold; background: #f9f9f9; }
+  .day-row:hover { background: #f3f9ff; }
+  .time-row { background-color: #cce5ff; font-weight: bold; position: sticky; top: 0; z-index: 2; }
+  .time-row th { box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
 
-  h1 { text-align: center; margin-bottom: 20px; }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
-    vertical-align: top;
-  }
-
-  th { background-color: #f0f0f0; }
-
-  td {
-    min-width: 80px;
-    position: relative;
-    overflow: visible;
-  }
-
-  .task {
-    margin: 2px 0;
-    padding: 8px 10px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #000;
-    position: relative;
-    z-index: 5;
-    cursor: pointer;
-  }
-
-  .subtopic-panel {
+  /* Popup styling */
+  .popup {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 8px;
-    width: 220px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 100;
-    text-align: left;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    border-radius: 6px;
-    animation: fadeIn 0.15s ease-out;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #007BFF;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    z-index: 10;
+    width: 300px;
+    border-radius: 10px;
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+  .popup h3 { margin-top: 0; color: #007BFF; }
+  .popup button {
+    background: #007BFF; color: white; border: none;
+    padding: 6px 12px; border-radius: 5px; cursor: pointer;
   }
-
-  .subtopic-panel ul { margin: 0; padding-left: 18px; }
-
-  /* Home box */
-  .home-box {
-    background: linear-gradient(135deg, #f0f8ff, #cce7ff);
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 400px;
-    margin: 20px auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .home-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-  }
-
-  .home-box h2 {
-    font-size: 24px;
-    color: #007BFF;
-    margin-bottom: 15px;
-  }
-
-  .home-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-
-  .home-btn:hover { background-color: #0056b3; }
-
-  @media (max-width: 768px) {
-    body { padding: 10px; }
-    table { font-size: 12px; }
-    td, th { padding: 5px; }
-    .subtopic-panel { width: 180px; }
+  .popup button:hover { background: #0056b3; }
+  .overlay {
+    display: none;
+    position: fixed; top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.3); z-index: 5;
   }
 </style>
 </head>
 <body>
 
-  <div class="home-box">
-      <h2>Welcome to Ungabunga</h2>
-      <a href="index.html" class="home-btn">Home</a>
-  </div>
+<h2>5-Week Calendar (Descending from Today)</h2>
 
-  <h1>Full Timetable</h1>
-  <table id="calendar"></table>
+<table>
+  <!-- Time slots row (Fixed at top) -->
+  <tr class="time-row">
+    <th>Day</th>
+    <th>Date</th>
+    <th>8-9</th>
+    <th>9-10</th>
+    <th>10-11</th>
+    <th>11-12</th>
+    <th>12-1</th>
+    <th>1-2</th>
+    <th>2-3</th>
+    <th>3-4</th>
+  </tr>
 
-  <script>
-    function format12Hour(hour) {
-      const suffix = hour >= 12 ? "PM" : "AM";
-      const h = hour % 12 === 0 ? 12 : hour % 12;
-      return `${h}${suffix}`;
-    }
+  <!-- Week 18 -->
+  <tr class="week-header"><td colspan="10">Week 18</td></tr>
+  <tr class="day-row">
+    <td>Sunday</td><td>2025-11-20</td>
+    <td></td><td></td>
+    <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+    <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+    <td></td><td></td>
+  </tr>
+  <tr class="day-row">
+    <td>Monday</td><td>2025-11-21</td>
+    <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+    <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+    <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+    <td></td>
+  </tr>
+  <tr class="day-row">
+    <td>Tuesday</td><td>2025-11-22</td>
+    <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+    <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+    <td data-subject="PHY0533111">PHY0533111, 603</td>
+    <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+    <td></td><td></td>
+  </tr>
+  <!-- Add other weeks similarly ... -->
 
-    fetch("tasks.json")
-      .then(res => res.json())
-      .then(data => {
-        const timeSlots = [8,9,10,11,12,13,14,15];
-        const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        const calendar = document.getElementById("calendar");
-        let html = "";
+</table>
 
-        const weeks = {};
-        for (const date in data) {
-          const entry = data[date];
-          if (!entry.day || !entry.slots) continue;
-          const week = entry.week || "Week 1";
-          if (!weeks[week]) weeks[week] = [];
-          weeks[week].push({ date, day: entry.day, slots: entry.slots });
-        }
+<!-- Popup -->
+<div class="overlay"></div>
+<div class="popup">
+  <h3 id="popup-title">Subject</h3>
+  <div id="popup-content"></div>
+  <button id="popup-close">Close</button>
+</div>
 
-        const sortedWeeks = Object.keys(weeks).sort(
-          (a,b) => parseInt(b.replace("Week","")) - parseInt(a.replace("Week",""))
-        );
+<script>
+const popup = document.querySelector(".popup");
+const overlay = document.querySelector(".overlay");
+const popupTitle = document.getElementById("popup-title");
+const popupContent = document.getElementById("popup-content");
+const closeBtn = document.getElementById("popup-close");
 
-        sortedWeeks.forEach(week => {
-          html += `<tr><th colspan="${timeSlots.length+2}" style="background:#007BFF;color:white;">${week}</th></tr>`;
-          html += "<tr><th>Day</th><th>Date</th>";
-          timeSlots.forEach(t => html += `<th>${format12Hour(t)}-${format12Hour(t+1)}</th>`);
-          html += "</tr>";
+let classNotesData = {};
 
-          weeks[week].sort((a,b) => daysOfWeek.indexOf(a.day)-daysOfWeek.indexOf(b.day));
+// Fetch JSON data dynamically
+fetch("tasks.json")
+  .then(res => res.json())
+  .then(data => { classNotesData = data; });
 
-          weeks[week].forEach(dayObj => {
-            html += `<tr><td><b>${dayObj.day}</b></td><td>${dayObj.date}</td>`;
-            const slotMap = {};
-            dayObj.slots.forEach(slot => {
-              if (!slot.time || !slot.task) return;
-              const [start,end] = slot.time.split("-").map(Number);
-              for (let h=start; h<end; h++) slotMap[h] = slot;
-            });
+// Handle click on subject cells
+document.querySelectorAll("td[data-subject]").forEach(cell => {
+  cell.addEventListener("click", () => {
+    const subject = cell.dataset.subject;
+    const date = cell.parentElement.children[1].textContent; // get date from 2nd cell
+    const notes = classNotesData[date]?.[subject] || ["No notes for this class today."];
+    popupTitle.textContent = subject;
+    popupContent.innerHTML = "<ul><li>" + notes.join("</li><li>") + "</li></ul>";
+    popup.style.display = "block";
+    overlay.style.display = "block";
+  });
+});
 
-            let hour = 8;
-            while(hour<16) {
-              const slot = slotMap[hour];
-              if(slot) {
-                const [start,end] = slot.time.split("-").map(Number);
-                const span = Math.min(end,16)-hour;
-                const colorStyle = slot.color ? `background:${slot.color};color:white;` : `background:#e0f7fa;`;
-                const subtopics = slot.subtopics ? slot.subtopics.join("|") : "";
-                html += `<td colspan="${span}" class="task" data-subtopics="${subtopics}" style="${colorStyle}">${slot.task}</td>`;
-                hour += span;
-              } else {
-                html += "<td></td>";
-                hour++;
-              }
-            }
-            html += "</tr>";
-          });
-        });
+// Close popup
+closeBtn.addEventListener("click", () => {
+  popup.style.display = "none";
+  overlay.style.display = "none";
+});
+overlay.addEventListener("click", () => {
+  popup.style.display = "none";
+  overlay.style.display = "none";
+});
+</script>
 
-        calendar.innerHTML = html;
-
-        // FIXED CLICK HANDLING
-        document.querySelectorAll(".task").forEach(td => {
-          td.addEventListener("click", e => {
-            e.stopPropagation(); // prevent bubbling
-            // Remove all existing panels
-            document.querySelectorAll(".subtopic-panel").forEach(p => p.remove());
-
-            const subtopics = td.dataset.subtopics;
-            if(!subtopics) return;
-
-            const panel = document.createElement("div");
-            panel.classList.add("subtopic-panel");
-            panel.innerHTML = `<ul>${subtopics.split("|").map(s => `<li>${s}</li>`).join("")}</ul>`;
-            td.appendChild(panel);
-            panel.style.display = "block";
-
-            // Adjust if off-screen
-            const rect = td.getBoundingClientRect();
-            if(rect.bottom + panel.offsetHeight > window.innerHeight){
-              panel.style.top = `-${panel.offsetHeight}px`;
-            } else {
-              panel.style.top = "100%";
-            }
-
-            // close on outside click
-            setTimeout(() => {
-              const closePanel = (ev) => {
-                if (!td.contains(ev.target)) {
-                  panel.remove();
-                  document.removeEventListener("click", closePanel);
-                }
-              };
-              document.addEventListener("click", closePanel);
-            }, 0);
-          });
-        });
-      });
-  </script>
 </body>
 </html>
