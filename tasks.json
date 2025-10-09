@@ -14,6 +14,6 @@
     "PHY0533111": { "status": "taken", "notes":["Kinetic Theory of gases", "Equation of derivation of kinetic theory of gases"] },
     "GED0232111": { "status": "taken", "notes":["Khata dekhayse(MID)"] },
     "CSE0613111": { "status": "taken", "notes":["Khata dekhayse(MID)(CT)"] },
-    "PHY0533112": { "status": "taken", "notes":["Hoy nai, ma'am er kaj chilo"] }
+    "PHY0533112": { "status": "missed", "notes":["Hoy nai, ma'am er kaj chilo"] }
   }
 }
