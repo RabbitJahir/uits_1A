@@ -13,7 +13,7 @@
   td { min-width: 80px; position: relative; cursor: pointer; overflow: visible; }
   .task { 
     margin: 2px 0; 
-    padding: 4px 6px; 
+    padding: 8px 10px; /* bigger tap area */
     border-radius: 6px; 
     font-size: 13px; 
     font-weight: 500; 
@@ -31,6 +31,8 @@
     border: 1px solid #ccc;
     padding: 6px;
     width: 200px;
+    max-height: 200px; /* scrollable if many subtopics */
+    overflow-y: auto;
     z-index: 100;
     text-align: left;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
@@ -166,15 +168,24 @@ fetch("tasks.json")
         const listItems = subtopics.split("|").map(s => `<li>${s}</li>`).join("");
         panel.innerHTML = `<ul>${listItems}</ul>`;
         td.appendChild(panel);
+
+        // Position adjustment for mobile/viewport
+        const rect = td.getBoundingClientRect();
         panel.style.display = "block";
+        if(rect.bottom + panel.offsetHeight > window.innerHeight){
+          panel.style.top = `-${panel.offsetHeight}px`; // show above if overflow
+        } else {
+          panel.style.top = "100%";
+        }
 
         // Close on outside click
-        document.addEventListener("click", function handler(ev){
+        function outsideClick(ev){
           if(!td.contains(ev.target)){
             panel.remove();
-            document.removeEventListener("click", handler);
+            document.removeEventListener("click", outsideClick);
           }
-        });
+        }
+        document.addEventListener("click", outsideClick);
       });
     });
   });
