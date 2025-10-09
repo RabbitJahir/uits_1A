@@ -7,21 +7,10 @@
 <style>
   body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
   h1 { text-align: center; margin-bottom: 20px; }
-  table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; }
-  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; }
+  table { border-collapse: collapse; width: 100%; max-width: 1200px; margin: 0 auto; table-layout: fixed; }
+  th, td { border: 1px solid #ccc; padding: 8px; text-align: center; vertical-align: top; word-wrap: break-word; }
   th { background-color: #f0f0f0; }
-  td { min-width: 80px; position: relative; cursor: pointer; overflow: visible; }
-  .task { 
-    margin: 2px 0; 
-    padding: 8px 10px; 
-    border-radius: 6px; 
-    font-size: 13px; 
-    font-weight: 500; 
-    color: #000; 
-    position: relative;
-    overflow: visible;
-    z-index: 1;
-  }
+  td.task { position: relative; cursor: pointer; }
   .subtopic-panel {
     display: none;
     position: absolute;
@@ -30,14 +19,18 @@
     background: #fff;
     border: 1px solid #ccc;
     padding: 6px;
-    width: 200px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 100;
+    width: 180px;
+    z-index: 10;
     text-align: left;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
   .subtopic-panel ul { margin: 0; padding-left: 18px; }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px){
+    table, th, td { font-size: 12px; }
+    .subtopic-panel { width: 140px; }
+  }
+
   /* Home Box */
   .home-box {
     background: linear-gradient(135deg, #f0f8ff, #cce7ff);
@@ -51,7 +44,17 @@
   }
   .home-box:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.2); }
   .home-box h2 { font-size: 24px; color: #007BFF; margin-bottom: 15px; }
-  .home-btn { display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: background-color 0.3s; }
+  .home-box p { font-size: 16px; color: #333; margin-bottom: 20px; }
+  .home-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
   .home-btn:hover { background-color: #0056b3; }
 </style>
 </head>
@@ -73,105 +76,90 @@ function format12Hour(hour) {
 }
 
 fetch("tasks.json")
-  .then(res => res.json())
-  .then(data => {
-    const timeSlots = [8,9,10,11,12,13,14,15];
-    const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const calendar = document.getElementById("calendar");
-    let html = "";
+.then(res => res.json())
+.then(data => {
+  const timeSlots = [8,9,10,11,12,13,14,15];
+  const daysOfWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const calendar = document.getElementById("calendar");
+  let html = "";
 
-    const weeks = {};
-    for (const date in data) {
-      const entry = data[date];
-      if (!entry.day || !entry.slots) continue;
-      const week = entry.week || "Week 1";
-      if (!weeks[week]) weeks[week] = [];
-      weeks[week].push({ date, day: entry.day, slots: entry.slots });
-    }
+  // Organize by week
+  const weeks = {};
+  for(const date in data){
+    const entry = data[date];
+    if(!entry.day || !entry.slots) continue;
+    const week = entry.week || "Week 1";
+    if(!weeks[week]) weeks[week] = [];
+    weeks[week].push({ date, day: entry.day, slots: entry.slots });
+  }
 
-    const sortedWeeks = Object.keys(weeks).sort(
-      (a,b) => parseInt(b.replace("Week","")) - parseInt(a.replace("Week",""))
-    );
+  const sortedWeeks = Object.keys(weeks).sort(
+    (a,b) => parseInt(b.replace("Week","")) - parseInt(a.replace("Week",""))
+  );
 
-    sortedWeeks.forEach(week => {
-      html += `<tr><th colspan="${timeSlots.length+2}" style="background:#007BFF;color:white;">${week}</th></tr>`;
-      html += "<tr><th>Day</th><th>Date</th>";
-      timeSlots.forEach(t => html += `<th>${format12Hour(t)}-${format12Hour(t+1)}</th>`);
-      html += "</tr>";
+  sortedWeeks.forEach(week => {
+    html += `<tr><th colspan="${timeSlots.length+2}" style="background:#007BFF;color:white;">${week}</th></tr>`;
+    html += "<tr><th>Day</th><th>Date</th>";
+    timeSlots.forEach(t => html += `<th>${format12Hour(t)}-${format12Hour(t+1)}</th>`);
+    html += "</tr>";
 
-      weeks[week].sort((a,b) => daysOfWeek.indexOf(a.day)-daysOfWeek.indexOf(b.day));
+    weeks[week].sort((a,b) => daysOfWeek.indexOf(a.day)-daysOfWeek.indexOf(b.day));
 
-      weeks[week].forEach(dayObj => {
-        html += `<tr><td><b>${dayObj.day}</b></td><td>${dayObj.date}</td>`;
-        const slotMap = {};
-        dayObj.slots.forEach(slot => {
-          if (!slot.time || !slot.task) return;
-          const [start,end] = slot.time.split("-").map(Number);
-          for (let h=start; h<end; h++) slotMap[h] = slot;
-        });
-
-        let hour = 8;
-        while(hour<16) {
-          const slot = slotMap[hour];
-          if(slot) {
-            const [start,end] = slot.time.split("-").map(Number);
-            const span = Math.min(end,16)-hour;
-            const colorStyle = slot.color ? `background:${slot.color};color:white;border-radius:6px;` : `background:#e0f7fa;`;
-            // Pass the raw JSON array as data attribute as JSON string
-            const subtopics = slot.subtopics ? JSON.stringify(slot.subtopics) : "";
-            html += `<td colspan="${span}" style="${colorStyle}" class="task" data-subtopics='${subtopics}'>${slot.task}</td>`;
-            hour += span;
-          } else {
-            html += "<td></td>";
-            hour++;
-          }
-        }
-        html += "</tr>";
+    weeks[week].forEach(dayObj => {
+      html += `<tr><td><b>${dayObj.day}</b></td><td>${dayObj.date}</td>`;
+      const slotMap = {};
+      dayObj.slots.forEach(slot => {
+        if(!slot.time || !slot.task) return;
+        const [start,end] = slot.time.split("-").map(Number);
+        slotMap[start] = { slot, span: end-start };
       });
-    });
 
-    calendar.innerHTML = html;
-
-    // Show subtopics on click
-    document.querySelectorAll(".task").forEach(td => {
-      td.addEventListener("click", e => {
-        // Remove existing panels
-        document.querySelectorAll(".subtopic-panel").forEach(panel => panel.remove());
-        const subtopicsStr = td.dataset.subtopics;
-        if(!subtopicsStr) return;
-        let subtopics;
-        try {
-          subtopics = JSON.parse(subtopicsStr);
-        } catch(err) {
-          console.error("Failed to parse subtopics:", err);
-          return;
-        }
-        const panel = document.createElement("div");
-        panel.classList.add("subtopic-panel");
-        const listItems = subtopics.map(s => `<li>${s}</li>`).join("");
-        panel.innerHTML = `<ul>${listItems}</ul>`;
-        td.appendChild(panel);
-
-        // Position adjustment for viewport
-        const rect = td.getBoundingClientRect();
-        panel.style.display = "block";
-        if(rect.bottom + panel.offsetHeight > window.innerHeight){
-          panel.style.top = `-${panel.offsetHeight}px`;
+      let hour = 8;
+      while(hour < 16){
+        if(slotMap[hour]){
+          const {slot, span} = slotMap[hour];
+          const colorStyle = slot.color ? `background:${slot.color};color:white;border-radius:6px;cursor:pointer;` 
+                                        : `background:#e0f7fa;cursor:pointer;`;
+          const subtopics = slot.subtopics ? JSON.stringify(slot.subtopics) : "";
+          html += `<td colspan="${span}" class="task" style="${colorStyle}" data-subtopics='${subtopics}'>${slot.task}</td>`;
+          hour += span;
         } else {
-          panel.style.top = "100%";
+          html += "<td></td>";
+          hour++;
         }
+      }
 
-        // Close on outside click
-        function outsideClick(ev){
-          if(!td.contains(ev.target)){
-            panel.remove();
-            document.removeEventListener("click", outsideClick);
-          }
+      html += "</tr>";
+    });
+  });
+
+  calendar.innerHTML = html;
+
+  // Click listener for subtopics
+  document.querySelectorAll(".task").forEach(td => {
+    td.addEventListener("click", e => {
+      document.querySelectorAll(".subtopic-panel").forEach(panel => panel.remove());
+      const subtopicsStr = td.dataset.subtopics;
+      if(!subtopicsStr) return;
+      let subtopics = [];
+      try { subtopics = JSON.parse(subtopicsStr); } catch(e){}
+      if(subtopics.length === 0) return;
+
+      const panel = document.createElement("div");
+      panel.classList.add("subtopic-panel");
+      panel.innerHTML = "<ul>" + subtopics.map(s => `<li>${s}</li>`).join("") + "</ul>";
+      td.appendChild(panel);
+      panel.style.display = "block";
+
+      document.addEventListener("click", function handler(ev){
+        if(!td.contains(ev.target)){
+          panel.remove();
+          document.removeEventListener("click", handler);
         }
-        document.addEventListener("click", outsideClick);
       });
     });
   });
+});
 </script>
 
 </body>
