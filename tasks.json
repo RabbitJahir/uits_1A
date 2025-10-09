@@ -43,7 +43,7 @@
     "slots": [ 
       { "time": "9-10", 
         "task": "MATH, 603", 
-        "subtopics": ["Khata dekhayse"]
+        "subtopics": ["Khata dekhayse"]},
       { "time": "10-12", 
         "task": "PHY 1, 603" }, 
       { "time": "12-13", 
