@@ -1,21 +1,19 @@
 {
   "2025-10-05": {
-    "CHEM053175": ["Chemical Bonding, lone bond"],
+    "CHEM0531175": ["Chemical Bonding, lone bond"],
     "MATH0541111": ["Rolles Revise", "Means theorem korayse"]
   },
   "2025-10-07": {
-    "GED0232111": ["Arguementative essay(gymming is deathing)"],
+    "GED0232111": ["Argumentative essay(gymming is deathing)"],
     "PHY0533112": ["Experiment 06"],
     "PHY0533111": ["khata dekhayse(MID)"],
-    "CHEM053175": ["Chemical Bonding again, lone bond"]
+    "CHEM0531175": ["Chemical Bonding again, lone bond"]
   },
   "2025-10-09": {
     "MATH0541111": ["Khata dekhayse(MID)"],
-    "PHY0533111": ["Kinetic Theory of gases", "Equation of derivation of kinetic theroy of gases"],
+    "PHY0533111": ["Kinetic Theory of gases", "Equation of derivation of kinetic theory of gases"],
     "GED0232111": ["Khata dekhayse(MID)"],
-    "CSE0613111": ["Khta dekhayse(MID)(CT)"],
+    "CSE0613111": ["Khata dekhayse(MID)(CT)"],
     "PHY0533112": ["Hoy nai, ma'am er kaj chilo"]
   }
-
-  
 }
