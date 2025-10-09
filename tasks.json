@@ -142,7 +142,6 @@
       { "time": "14-16", "task": "PHY 2(A2), 102" } 
     ] 
   },
-  {
   "2025-10-05": { "week": "Week 12", "day": "Sunday",
     "slots": [
       { "time": "10-12", "task": "CHEM, 510" },
