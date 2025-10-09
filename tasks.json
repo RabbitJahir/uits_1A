@@ -109,8 +109,8 @@
 
   "2025-10-12": { "week": "Week 13", "day": "Sunday", 
     "slots": [ 
-      { "time": "10-12", "task": "CHEM, 510", "subtopics": ["Chemical bonding, lone, bond"], "color": "green" },
-      { "time": "12-14", "task": "MATH, 413", "subtopics": ["Rolles revision, mean theorem korayse"], "color": "green" }
+      { "time": "10-12", "task": "CHEM, 510" },
+      { "time": "12-14", "task": "MATH, 413" }
     ] 
   },
   "2025-10-13": { "week": "Week 13", "day": "Monday", 
