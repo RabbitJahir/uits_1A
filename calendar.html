@@ -13,7 +13,7 @@
   td { min-width: 80px; position: relative; cursor: pointer; overflow: visible; }
   .task { 
     margin: 2px 0; 
-    padding: 8px 10px; /* bigger tap area */
+    padding: 8px 10px; 
     border-radius: 6px; 
     font-size: 13px; 
     font-weight: 500; 
@@ -31,15 +31,14 @@
     border: 1px solid #ccc;
     padding: 6px;
     width: 200px;
-    max-height: 200px; /* scrollable if many subtopics */
+    max-height: 200px;
     overflow-y: auto;
     z-index: 100;
     text-align: left;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   }
   .subtopic-panel ul { margin: 0; padding-left: 18px; }
-
-  /* Top box */
+  /* Home Box */
   .home-box {
     background: linear-gradient(135deg, #f0f8ff, #cce7ff);
     border-radius: 15px;
@@ -50,42 +49,18 @@
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
   }
-  .home-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-  }
-  .home-box h2 {
-    font-size: 24px;
-    color: #007BFF;
-    margin-bottom: 15px;
-  }
-  .home-box p {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  .home-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  .home-btn:hover {
-    background-color: #0056b3;
-  }
+  .home-box:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.2); }
+  .home-box h2 { font-size: 24px; color: #007BFF; margin-bottom: 15px; }
+  .home-btn { display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; transition: background-color 0.3s; }
+  .home-btn:hover { background-color: #0056b3; }
 </style>
 </head>
 <body>
 
-  <!-- Home Button -->
-  <div class="home-box">
-      <h2>Welcome to Ungabunga</h2>
-      <a href="index.html" class="home-btn">Home</a>
-  </div>
+<div class="home-box">
+  <h2>Welcome to Ungabunga</h2>
+  <a href="index.html" class="home-btn">Home</a>
+</div>
 
 <h1>Full Timetable</h1>
 <table id="calendar"></table>
@@ -142,8 +117,9 @@ fetch("tasks.json")
             const [start,end] = slot.time.split("-").map(Number);
             const span = Math.min(end,16)-hour;
             const colorStyle = slot.color ? `background:${slot.color};color:white;border-radius:6px;` : `background:#e0f7fa;`;
-            const subtopics = slot.subtopics ? slot.subtopics.join("|") : "";
-            html += `<td colspan="${span}" style="${colorStyle}" class="task" data-subtopics="${subtopics}">${slot.task}</td>`;
+            // Pass the raw JSON array as data attribute as JSON string
+            const subtopics = slot.subtopics ? JSON.stringify(slot.subtopics) : "";
+            html += `<td colspan="${span}" style="${colorStyle}" class="task" data-subtopics='${subtopics}'>${slot.task}</td>`;
             hour += span;
           } else {
             html += "<td></td>";
@@ -161,19 +137,26 @@ fetch("tasks.json")
       td.addEventListener("click", e => {
         // Remove existing panels
         document.querySelectorAll(".subtopic-panel").forEach(panel => panel.remove());
-        const subtopics = td.dataset.subtopics;
-        if(!subtopics) return;
+        const subtopicsStr = td.dataset.subtopics;
+        if(!subtopicsStr) return;
+        let subtopics;
+        try {
+          subtopics = JSON.parse(subtopicsStr);
+        } catch(err) {
+          console.error("Failed to parse subtopics:", err);
+          return;
+        }
         const panel = document.createElement("div");
         panel.classList.add("subtopic-panel");
-        const listItems = subtopics.split("|").map(s => `<li>${s}</li>`).join("");
+        const listItems = subtopics.map(s => `<li>${s}</li>`).join("");
         panel.innerHTML = `<ul>${listItems}</ul>`;
         td.appendChild(panel);
 
-        // Position adjustment for mobile/viewport
+        // Position adjustment for viewport
         const rect = td.getBoundingClientRect();
         panel.style.display = "block";
         if(rect.bottom + panel.offsetHeight > window.innerHeight){
-          panel.style.top = `-${panel.offsetHeight}px`; // show above if overflow
+          panel.style.top = `-${panel.offsetHeight}px`;
         } else {
           panel.style.top = "100%";
         }
