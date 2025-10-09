@@ -66,9 +66,9 @@ fetch("tasks.json")
       weeks[week].push({ date, day: entry.day, slots: entry.slots });
     }
 
-    // Sort weeks numerically
+    // Sort weeks numerically in DESCENDING order
     const sortedWeeks = Object.keys(weeks).sort(
-      (a, b) => parseInt(a.replace("Week", "")) - parseInt(b.replace("Week", ""))
+      (a, b) => parseInt(b.replace("Week", "")) - parseInt(a.replace("Week", ""))
     );
 
     sortedWeeks.forEach(week => {
