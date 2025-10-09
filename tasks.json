@@ -144,8 +144,8 @@
   },
   "2025-10-05": { "week": "Week 12", "day": "Sunday",
     "slots": [
-      { "time": "10-12", "task": "CHEM, 510" },
-      { "time": "12-14", "task": "MATH, 413" }
+      { "time": "10-12", "task": "CHEM, 510", "subtopics": ["Chemical bonding, lone, bond"], "color": "green" },
+      { "time": "12-14", "task": "MATH, 413", "subtopics": ["Rolles revision, mean theorem korayse"], "color": "green" }
     ]
   },
   "2025-10-06": { "week": "Week 12", "day": "Monday",
@@ -155,10 +155,10 @@
   },
   "2025-10-07": { "week": "Week 12", "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602" },
-      { "time": "10-12", "task": "PHY 2(A1), 102" },
+      { "time": "8-10", "task": "ENG 1, 602", "subtopics": ["Arguementative essay, gymmming is deathly"], "color": "green" },
+      { "time": "10-12", "task": "PHY 2(A1), 102", "subtopics": ["Experiment 06"], "color": "green" },
       { "time": "12-13", "task": "PHY 1, 603", "subtopics": ["Khata dekhayse"], "color": "green" },
-      { "time": "13-14", "task": "CHEM, 202" }
+      { "time": "13-14", "task": "CHEM, 202", "subtopics": ["More chemical bonding, lone, bond"], "color": "green" }
     ]
   },
   "2025-10-08": { "week": "Week 12", "day": "Wednesday",
@@ -176,5 +176,5 @@
     ]
   }
 
-  
+
 }
