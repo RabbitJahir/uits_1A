@@ -155,7 +155,7 @@
   },
   "2025-10-07": { "week": "Week 12", "day": "Tuesday",
     "slots": [
-      { "time": "8-10", "task": "ENG 1, 602", "color": "green", "subtopics": ["Arguementative essay, gymmming is deathly"] },
+      { "time": "8-10", "task": "ENG 1, 602", "color": "green", "subtopics": ["Arguementative essay(gymmming is deathly)"] },
       { "time": "10-12", "task": "PHY 2(A1), 102", "color": "green", "subtopics": ["Experiment 06"] },
       { "time": "12-13", "task": "PHY 1, 603", "color": "green", "subtopics": ["Khata dekhayse"] },
       { "time": "13-14", "task": "CHEM, 202", "color": "green", "subtopics": ["More chemical bonding, lone, bond"] }
