@@ -42,8 +42,8 @@
   "2025-10-09": { "week": "Week 12", "day": "Thursday", 
     "slots": [ 
       { "time": "9-10", 
-        "task": "MATH, 603" }, 
-        "subtopics": ["Khata dekhayse"],
+        "task": "MATH, 603", 
+        "subtopics": ["Khata dekhayse"]
       { "time": "10-12", 
         "task": "PHY 1, 603" }, 
       { "time": "12-13", 
