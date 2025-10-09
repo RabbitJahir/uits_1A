@@ -157,7 +157,7 @@
     "slots": [
       { "time": "8-10", "task": "ENG 1, 602" },
       { "time": "10-12", "task": "PHY 2(A1), 102" },
-      { "time": "12-13", "task": "PHY 1, 603","subtopics": ["Khata dekhayse"] },
+      { "time": "12-13", "task": "PHY 1, 603", "subtopics": ["Khata dekhayse"], "color": "green" },
       { "time": "13-14", "task": "CHEM, 202" }
     ]
   },
