@@ -1,7 +1,10 @@
 {
-  "2025-11-20": {
-    "CHEM0531175": ["Chemical kinetics lecture", "Solved reaction rate problems", "Homework assigned"],
-    "MATH0541111": ["Differentiation exercises", "Limits discussion", "Integration introduction"]
+  "2025-10-09": {
+    "MATH0541111": ["Khata dekhayse"],
+    "PHY0533111": ["Kinetic Theory of gases", "Equation of derivation of kinetic theroy of gases"],
+    "GED0232111": ["Khata dekhayse"],
+    "CSE0613111": ["Khta dekhayse"],
+    "PHY0533112": ["Hoy nai, ma'am er kaj chilo"]
   },
   "2025-11-21": {
     "CSE0613111": ["Intro to programming", "Variables & loops"],
