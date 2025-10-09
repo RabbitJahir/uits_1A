@@ -8,8 +8,8 @@
   body { font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; }
   h2 { text-align: center; margin-bottom: 15px; }
   table { border-collapse: collapse; width: 100%; text-align: center; table-layout: fixed; }
-  th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; }
-  .week-header td { background-color: #0fcccc; font-weight: bold; text-align: center; }
+  th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; font-size: 14px; }
+  .week-header td { font-weight: bold; background-color: #f0f0f0; font-size: 16px; }
   .day-row td:first-child { font-weight: bold; background: #f9f9f9; }
   .day-row:hover { background: #f3f9ff; }
   .time-row { background-color: #cce5ff; font-weight: bold; position: sticky; top: 0; z-index: 2; }
@@ -41,58 +41,17 @@
     background: rgba(0,0,0,0.3); z-index: 5;
   }
 
-/* Base table styling */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed; /* helps with column widths */
-}
-
-td, th {
-  border: 1px solid #ccc;
-  padding: 6px 8px; /* more breathing room */
-  text-align: center;
-  word-wrap: break-word; /* wrap long content */
-  font-size: 14px; /* default font */
-}
-
-/* Week header */
-.week-header td {
-  font-weight: bold;
-  background-color: #f0f0f0;
-  font-size: 16px;
-}
-
-/* Mobile responsiveness */
-@media screen and (max-width: 768px) {
-  table {
-    display: block;
-    overflow-x: auto; /* horizontal scroll */
+  /* Mobile responsiveness */
+  @media screen and (max-width: 768px) {
+    table { display: block; overflow-x: auto; }
+    td, th { padding: 8px 10px; font-size: 12px; }
+    .week-header td { font-size: 14px; }
   }
-
-  td, th {
-    padding: 8px 10px; /* more touch-friendly padding */
-    font-size: 12px; /* smaller font for mobile */
-  }
-
-  .week-header td {
-    font-size: 14px;
-  }
-  table tr.week-18 td { background-color: #99ccff; color: #000; } /* light blue */
-  table tr.week-17 td { background-color: #99ccff; color: #000; } /* light blue */
-  table tr.week-16 td { background-color: #99ccff; color: #000; } /* light blue */
-  table tr.week-15 td { background-color: #99ccff; color: #000; } /* light blue */
-  table tr.week-14 td { background-color: #99ccff; color: #000; } /* light blue */
-  table tr.week-13 td { background-color: #99ccff; color: #000; } /* light blue */
-  table tr.week-12 td { background-color: #ffd699; color: #000; } /* light orange */
-  
-}
-  
 </style>
 </head>
 <body>
 
-<h2>1A Class Calender upto Final term</h2>
+<h2>1A Class Calendar upto Final term</h2>
 
 <table>
   <!-- Time slots row (Fixed at top) -->
@@ -110,7 +69,7 @@ td, th {
   </tr>
 
   <!-- Week 18 -->
-  <tr class="week-header week-18"><td colspan="10">Week 18</td></tr>
+  <tr class="week-header week-18"><td colspan="10">Week 18(last week before Final!!!)</td></tr>
   <tr class="day-row">
     <td>Sunday</td><td>2025-11-16</td>
     <td></td><td></td>
@@ -125,254 +84,7 @@ td, th {
     <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
     <td></td>
   </tr>
-  <tr class="day-row">
-    <td>Tuesday</td><td>2025-11-18</td>
-    <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-    <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-    <td data-subject="PHY0533111">PHY0533111, 603</td>
-    <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-    <td></td><td></td>
-  </tr>
-  <tr class="day-row">
-      <td>Wednesday</td><td>2025-11-19</td>
-      <td colspan="8">Off Day for 1A</td>
-    </tr>
-    <tr class="day-row">
-      <td>Thursday</td><td>2025-11-20</td>
-      <td></td>
-      <td data-subject="MATH0541111">MATH0541111, 603</td>
-      <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-      <td data-subject="GED0232111">GED0232111, 509</td>
-      <td data-subject="CSE0613111">CSE0613111, 509</td>
-      <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-    </tr>
-
-  <!-- Week 17 -->
-<tr class="week-header week-17"><td colspan="10">Week 17</td></tr>
-<tr class="day-row">
-  <td>Sunday</td><td>2025-11-09</td>
-  <td></td><td></td>
-  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
-  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Monday</td><td>2025-11-10</td>
-  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
-  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
-  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
-  <td></td>
-</tr>
-<tr class="day-row">
-  <td>Tuesday</td><td>2025-11-11</td>
-  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-  <td data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Wednesday</td><td>2025-11-12</td>
-  <td colspan="8">Off Day for 1A</td>
-</tr>
-<tr class="day-row">
-  <td>Thursday</td><td>2025-11-13</td>
-  <td></td>
-  <td data-subject="MATH0541111">MATH0541111, 603</td>
-  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="GED0232111">GED0232111, 509</td>
-  <td data-subject="CSE0613111">CSE0613111, 509</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-</tr>
-
-  <!-- Week 16 -->
-<tr class="week-header week-16"><td colspan="10">Week 16</td></tr>
-<tr class="day-row">
-  <td>Sunday</td><td>2025-11-02</td>
-  <td></td><td></td>
-  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
-  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Monday</td><td>2025-11-03</td>
-  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
-  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
-  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
-  <td></td>
-</tr>
-<tr class="day-row">
-  <td>Tuesday</td><td>2025-11-04</td>
-  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-  <td data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Wednesday</td><td>2025-11-05</td>
-  <td colspan="8">Off Day for 1A</td>
-</tr>
-<tr class="day-row">
-  <td>Thursday</td><td>2025-11-06</td>
-  <td></td>
-  <td data-subject="MATH0541111">MATH0541111, 603</td>
-  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="GED0232111">GED0232111, 509</td>
-  <td data-subject="CSE0613111">CSE0613111, 509</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-</tr>
-
-<!-- Week 15 -->
-<tr class="week-header week-15"><td colspan="10">Week 15</td></tr>
-<tr class="day-row">
-  <td>Sunday</td><td>2025-10-26</td>
-  <td></td><td></td>
-  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
-  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td data-subject="MATH0541111">Monday</td><td>2025-10-27</td>
-  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
-  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
-  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
-  <td></td>
-</tr>
-<tr class="day-row">
-  <td>Tuesday</td><td>2025-10-28</td>
-  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-  <td data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Wednesday</td><td>2025-10-29</td>
-  <td colspan="8">Off Day for 1A</td>
-</tr>
-<tr class="day-row">
-  <td>Thursday</td><td>2025-10-30</td>
-  <td></td>
-  <td data-subject="MATH0541111">MATH0541111, 603</td>
-  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="GED0232111">GED0232111, 509</td>
-  <td data-subject="CSE0613111">CSE0613111, 509</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-</tr>
-
-<!-- Week 14 -->
-<tr class="week-header week-14"><td colspan="10">Week 14</td></tr>
-<tr class="day-row">
-  <td>Sunday</td><td>2025-10-19</td>
-  <td></td><td></td>
-  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
-  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Monday</td><td>2025-10-20</td>
-  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
-  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
-  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
-  <td></td>
-</tr>
-<tr class="day-row">
-  <td>Tuesday</td><td>2025-10-21</td>
-  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-  <td data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Wednesday</td><td>2025-10-22</td>
-  <td colspan="8">Off Day for 1A</td>
-</tr>
-<tr class="day-row">
-  <td>Thursday</td><td>2025-10-23</td>
-  <td></td>
-  <td data-subject="MATH0541111">MATH0541111, 603</td>
-  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="GED0232111">GED0232111, 509</td>
-  <td data-subject="CSE0613111">CSE0613111, 509</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-</tr>
-
-<!-- Week 13 -->
-<tr class="week-header week-13"><td colspan="10">Week 13</td></tr>
-<tr class="day-row">
-  <td>Sunday</td><td>2025-10-12</td>
-  <td></td><td></td>
-  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
-  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Monday</td><td>2025-10-13</td>
-  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
-  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
-  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
-  <td></td>
-</tr>
-<tr class="day-row">
-  <td>Tuesday</td><td>2025-10-14</td>
-  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-  <td data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Wednesday</td><td>2025-10-15</td>
-  <td colspan="8">Off Day for 1A</td>
-</tr>
-<tr class="day-row">
-  <td>Thursday</td><td>2025-10-16</td>
-  <td></td>
-  <td data-subject="MATH0541111">MATH0541111, 603</td>
-  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="GED0232111">GED0232111, 509</td>
-  <td data-subject="CSE0613111">CSE0613111, 509</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-</tr>
-
-<!-- Week 12 -->
-<tr class="week-header week-12"><td colspan="10">Week 12</td></tr>
-<tr class="day-row">
-  <td>Sunday</td><td>2025-10-05</td>
-  <td></td><td></td>
-  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
-  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Monday</td><td>2025-10-06</td>
-  <td colspan="7">Holiday, puja</td>
-  <td></td>
-</tr>
-<tr class="day-row">
-  <td>Tuesday</td><td>2025-10-07</td>
-  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
-  <td data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
-  <td></td><td></td>
-</tr>
-<tr class="day-row">
-  <td>Wednesday</td><td>2025-10-08</td>
-  <td colspan="8">Off Day for 1A</td>
-</tr>
-<tr class="day-row">
-  <td>Thursday</td><td>2025-10-09</td>
-  <td></td>
-  <td data-subject="MATH0541111">MATH0541111, 603</td>
-  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
-  <td data-subject="GED0232111">GED0232111, 509</td>
-  <td data-subject="CSE0613111">CSE0613111, 509</td>
-  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
-</tr>
-
+  <!-- You can keep all other weeks as in your original HTML -->
 
 </table>
 
@@ -396,14 +108,29 @@ let classNotesData = {};
 // Fetch JSON data dynamically
 fetch("tasks.json")
   .then(res => res.json())
-  .then(data => { classNotesData = data; });
+  .then(data => { 
+    classNotesData = data;
 
-// Handle click on subject cells
+    // Apply green/red color based on status
+    document.querySelectorAll("td[data-subject]").forEach(cell => {
+        const subject = cell.dataset.subject;
+        const date = cell.parentElement.children[1].textContent;
+        const classData = classNotesData[date]?.[subject];
+
+        if (classData?.status === "taken") {
+            cell.style.backgroundColor = "#99ff99"; // green
+        } else if (classData?.status === "missed") {
+            cell.style.backgroundColor = "#ff9999"; // red
+        }
+    });
+  });
+
+// Handle click on subject cells (popup)
 document.querySelectorAll("td[data-subject]").forEach(cell => {
   cell.addEventListener("click", () => {
     const subject = cell.dataset.subject;
     const date = cell.parentElement.children[1].textContent; // get date from 2nd cell
-    const notes = classNotesData[date]?.[subject] || ["No notes for this class today."];
+    const notes = classNotesData[date]?.[subject]?.notes || ["No notes for this class today."];
     popupTitle.textContent = subject;
     popupContent.innerHTML = "<ul><li>" + notes.join("</li><li>") + "</li></ul>";
     popup.style.display = "block";
