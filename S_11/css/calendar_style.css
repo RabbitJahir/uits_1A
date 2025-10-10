@@ -6,13 +6,20 @@ th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; font-si
 .day-row td:first-child { font-weight: bold; background: #f9f9f9; }
 .day-row:hover { background: #f3f9ff; }
 .time-row { background-color: #cce5ff; font-weight: bold; position: sticky; top: 0; z-index: 2; }
+/* Wrapper makes scroll separate from sticky area */
+.table-container {
+  overflow-x: auto;
+  position: relative;
+  max-width: 100%;
+}
 /* Make time header sticky for all devices */
+/* Keep sticky header visible */
 .time-row th {
   position: sticky;
   top: 0;
   background-color: #cce5ff;
   font-weight: bold;
-  z-index: 5;
+  z-index: 10;
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 
