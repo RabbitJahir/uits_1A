@@ -57,14 +57,16 @@ thead th:nth-child(1) {
   background-color: #f9f9f9; /* match table background */
   font-weight: bold;
   z-index: 5;
+  width: 80px; /* set fixed width for alignment */
 }
 
-/* Sticky second column (additional info / subject etc.) */
+/* Sticky second column (additional info / date) */
 .day-row td:nth-child(2),
 thead th:nth-child(2) {
   position: sticky;
-  left: 100px; /* width of first column, adjust to match actual width */
+  left: 80px; /* width of first column */
   background-color: #f9f9f9;
+  font-weight: bold;
   z-index: 4;
 }
 
