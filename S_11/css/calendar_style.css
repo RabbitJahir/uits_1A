@@ -1,3 +1,4 @@
+/* Body & Heading */
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -9,18 +10,19 @@ h2 {
   margin-bottom: 15px;
 }
 
+/* Table wrapper for horizontal scroll */
 .table-wrapper {
-  max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
 }
 
+/* Table styling */
 table {
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed;
-  min-width: 600px; /* ensures column alignment */
+  min-width: 700px; /* ensures proper column alignment on mobile */
 }
 
 th, td {
@@ -28,39 +30,39 @@ th, td {
   padding: 6px;
   word-wrap: break-word;
   font-size: 14px;
+  text-align: center;
 }
 
+/* Week header */
 .week-header td {
   font-weight: bold;
   background-color: #f0f0f0;
   font-size: 16px;
 }
 
-.day-row td:first-child {
-  font-weight: bold;
-  background: #f9f9f9;
-}
-
-.day-row:hover {
-  background: #f3f9ff;
-}
-
-/* Sticky header fix */
-.time-row {
-  background-color: #cce5ff;
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.time-row th {
+/* Sticky time row */
+thead .time-row th {
   background-color: #cce5ff;
   font-weight: bold;
   position: sticky;
   top: 0;
   z-index: 10;
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* First column sticky */
+.day-row td:first-child {
+  font-weight: bold;
+  background-color: #f9f9f9;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+}
+
+/* Row hover effect */
+.day-row:hover {
+  background-color: #e6f2ff;
+  transition: background 0.2s ease-in-out;
 }
 
 /* Popup styling */
@@ -106,22 +108,21 @@ th, td {
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
-  .table-wrapper {
-    overflow-x: auto;
-    overflow-y: visible; /* allow sticky to work vertically */
-  }
-
   table {
-    min-width: 700px; /* keep columns aligned */
+    min-width: 700px;
   }
 
-  td, th {
+  th, td {
     padding: 8px 10px;
     font-size: 12px;
   }
 
   .week-header td {
     font-size: 14px;
+  }
+
+  .day-row:hover {
+    background-color: #f0f9ff;
   }
 }
 
