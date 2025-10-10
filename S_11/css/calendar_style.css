@@ -40,34 +40,6 @@ th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; font-si
   .week-header td { font-size: 14px; }
 }
 
-/* Home box code */
-.home-box {
-  background: linear-gradient(135deg, #f0f8ff, #cce7ff);
-  border-radius: 15px;
-  padding: 30px;
-  max-width: 400px;
-  margin: 20px auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.home-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-}
-.home-box h2 { font-size: 24px; color: #007BFF; margin-bottom: 15px; }
-.home-box p { font-size: 16px; color: #333; margin-bottom: 20px; }
-.home-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-.home-btn:hover { background-color: #0056b3; }
 
 /* Week coloring */
 .week-15 td, .week-14 td, .week-13 td, .week-12 td, .week-11 td, .week-10 td { background-color: #99ccff; color: #000; }
