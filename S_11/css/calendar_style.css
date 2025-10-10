@@ -47,6 +47,7 @@ thead .time-row th {
   z-index: 10;
   background-color: #cce5ff;
   font-weight: bold;
+  -webkit-sticky: top;
 }
 
 /* Sticky first column (day) */
