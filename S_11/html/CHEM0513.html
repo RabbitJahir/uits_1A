@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Engineering Chemistry</title>
+
+  <!-- Page styling CSS part-->
+    <link rel="stylesheet" href="../css/chem.css">
+   <!-- home button box-->
+  <link rel="stylesheet" href="../css/home_box_code.css">
+    
+</head>
+
+<body>
+
+   <!-- the button -->
+    <div class="home-box">
+        <h2>Welcome to Ungabunga</h2>
+        <a href="../../index.html" class="home-btn">Home</a>
+    </div>
+
+    <!-- PERIODIC TABLE IMAGE SECTION -->
+    <div class="periodic-table">
+        <img src="periodic_table.jpg" alt="Periodic Table">
+    </div>
+
+    <section id="lab">
+        <h1>Engineering Chemistry</h1>
+
+        <h2>Engineering Chemistry in Class</h2>
+
+        <table>
+            <tr>
+                <th colspan="3">Mark Distribution</th>
+            </tr>
+            <tr>
+                <td>Class Attendance/Performance</td>
+                <td>10</td>
+                <td><input type="text" placeholder="Type here"></td>
+            </tr>
+            <tr>
+                <td>Class Test/Assignment<br>(Avg of before & after mid)</td>
+                <td>10+10</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Mid Term</td>
+                <td>20</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Final</td>
+                <td>50</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>100</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+        </table>
+    </section>
+
+    <script>
+    // Select all table input fields
+    const inputs = document.querySelectorAll('table input');
+
+    inputs.forEach((input, index) => {
+        // Load saved value from LocalStorage
+        const savedValue = localStorage.getItem('mark' + index);
+        if(savedValue) input.value = savedValue;
+
+        // Save value to LocalStorage on input
+        input.addEventListener('input', () => {
+            localStorage.setItem('mark' + index, input.value);
+        });
+    });
+</script>
+
+    <!-- SECTION 2: Syllabus of Final -->
+    <section id="syllabus">
+        <h1>Syllabus of Final</h1>
+        <div class="container">
+
+            <div class="topic" onclick="toggleSubtopics(1)">
+                Chemical Bonding (click me)
+                <div class="subtopics" id="sub1">
+                    <ul>
+                        <li><b>Firstly</b></li>
+                        <li>1. Find electronic configuration<br>2. Find excited configuration<br>3. Find hybridization configuration (ψ)</li>
+                        <li><b>Secondly</b></li>
+                        <li>1. Find lone pairs (double electrons) & bond pairs (single electrons)<br>2. Mention sp, sp2, sp3 etc.</li>
+                        <li><b>Thirdly</b></li>
+                        <li>1. Draw the structure, show ψ’s, bonds between arms, if 3D, draw it.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(2)">
+                Topic 2 (click me)
+                <div class="subtopics" id="sub2">
+                    <ul>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(3)">
+                Topic 3 (click me)
+                <div class="subtopics" id="sub3">
+                    <ul>
+                        <!-- add kora na lagle khali rakho -->
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Script-->
+<script src="../js/chem.js"></script>
+
+</body>
+</html>
