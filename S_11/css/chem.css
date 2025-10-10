@@ -101,3 +101,25 @@
         .subtopics li:last-child {
             border-bottom: none;
         }
+
+   /*  Image css */
+/* Periodic table styling */
+.periodic-table {
+    text-align: center;         /* Center the image */
+    margin: 30px 0;             /* Vertical spacing */
+}
+
+.periodic-table img {
+    max-width: 100%;            /* Responsive width */
+    height: auto;               /* Keep aspect ratio */
+    border: 5px solid #007BFF; /* Blue border */
+    border-radius: 15px;        /* Rounded corners */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Shadow effect */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.periodic-table img:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+}
+
