@@ -10,18 +10,17 @@ h2 {
 }
 
 .table-wrapper {
+  max-width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* smooth mobile scroll */
+  -webkit-overflow-scrolling: touch;
   position: relative;
 }
 
-/* Keep table layout consistent across devices */
 table {
   border-collapse: collapse;
   width: 100%;
-  text-align: center;
   table-layout: fixed;
-  min-width: 600px; /* ensures proper column width */
+  min-width: 600px; /* ensures column alignment */
 }
 
 th, td {
@@ -56,6 +55,11 @@ th, td {
 }
 
 .time-row th {
+  background-color: #cce5ff;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 
