@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1A Class Calendar</title>
+<style>
+  body { font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px; }
+  h2 { text-align: center; margin-bottom: 15px; }
+  table { border-collapse: collapse; width: 100%; text-align: center; table-layout: fixed; }
+  th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; font-size: 14px; }
+  .week-header td { font-weight: bold; background-color: #f0f0f0; font-size: 16px; }
+  .day-row td:first-child { font-weight: bold; background: #f9f9f9; }
+  .day-row:hover { background: #f3f9ff; }
+  .time-row { background-color: #cce5ff; font-weight: bold; position: sticky; top: 0; z-index: 2; }
+  .time-row th { box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
+
+  /* Popup styling */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 2px solid #007BFF;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    z-index: 10;
+    width: 300px;
+    border-radius: 10px;
+  }
+  .popup h3 { margin-top: 0; color: #007BFF; }
+  .popup button {
+    background: #007BFF; color: white; border: none;
+    padding: 6px 12px; border-radius: 5px; cursor: pointer;
+  }
+  .popup button:hover { background: #0056b3; }
+  .overlay {
+    display: none;
+    position: fixed; top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.3); z-index: 5;
+  }
+
+  @media screen and (max-width: 768px) {
+    table { display: block; overflow-x: auto; }
+    td, th { padding: 8px 10px; font-size: 12px; }
+    .week-header td { font-size: 14px; }
+  }
+
+  /* the top box code */
+.home-box {
+    background: linear-gradient(135deg, #f0f8ff, #cce7ff);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.home-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+.home-box h2 {
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 15px;
+}
+.home-box p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+}
+.home-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+.home-btn:hover {
+    background-color: #0056b3;
+}
+
+  .week-15 td { background-color: #99ccff; color: #000; } /* light blue */
+  .week-14 td { background-color: #99ccff; color: #000; } /* light blue */
+  .week-13 td { background-color: #99ccff; color: #000; } /* light blue */
+  .week-12 td { background-color: #99ccff; color: #000; } /* light blue */
+  .week-11 td { background-color: #99ccff; color: #000; } /* light blue */
+  .week-10 td { background-color: #99ccff; color: #000; } /* light blue */
+  .week-09 td { background-color: #ffd699; color: #000; } /* light orange */
+  
+</style>
+</head>
+<body>
+
+  <div class="home-box">
+        <h2>Welcome to Ungabunga</h2>
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
+
+<h2>1A Class Calendar upto Final term</h2>
+
+<table>
+  <tr class="time-row">
+    <th>Day</th>
+    <th>Date</th>
+    <th>8-9</th>
+    <th>9-10</th>
+    <th>10-11</th>
+    <th>11-12</th>
+    <th>12-1</th>
+    <th>1-2</th>
+    <th>2-3</th>
+    <th>3-4</th>
+  </tr>
+
+ <!-- Week 15 -->
+  <tr class="week-header week-15"><td colspan="10">Week 15</td></tr>
+  <tr class="day-row">
+    <td>Sunday</td><td>2025-11-16</td>
+    <td></td><td></td>
+    <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+    <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+    <td></td><td></td>
+  </tr>
+  <tr class="day-row">
+    <td>Monday</td><td>2025-11-17</td>
+    <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+    <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+    <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+    <td></td>
+  </tr>
+  <tr class="day-row">
+    <td>Tuesday</td><td>2025-11-18</td>
+    <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+    <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+    <td data-subject="PHY0533111">PHY0533111, 603</td>
+    <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+    <td></td><td></td>
+  </tr>
+  <tr class="day-row">
+      <td>Wednesday</td><td>2025-11-19</td>
+      <td colspan="8">Off Day for 1A</td>
+    </tr>
+    <tr class="day-row">
+      <td>Thursday</td><td>2025-11-20</td>
+      <td></td>
+      <td data-subject="MATH0541111">MATH0541111, 603</td>
+      <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+      <td data-subject="GED0232111">GED0232111, 509</td>
+      <td data-subject="CSE0613111">CSE0613111, 509</td>
+      <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+    </tr>
+
+  <!-- Week 14 -->
+<tr class="week-header week-14"><td colspan="10">Week 14</td></tr>
+<tr class="day-row">
+  <td>Sunday</td><td>2025-11-09</td>
+  <td></td><td></td>
+  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Monday</td><td>2025-11-10</td>
+  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+  <td></td>
+</tr>
+<tr class="day-row">
+  <td>Tuesday</td><td>2025-11-11</td>
+  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+  <td data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Wednesday</td><td>2025-11-12</td>
+  <td colspan="8">Off Day for 1A</td>
+</tr>
+<tr class="day-row">
+  <td>Thursday</td><td>2025-11-13</td>
+  <td></td>
+  <td data-subject="MATH0541111">MATH0541111, 603</td>
+  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="GED0232111">GED0232111, 509</td>
+  <td data-subject="CSE0613111">CSE0613111, 509</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+</tr>
+
+  <!-- Week 13 -->
+<tr class="week-header week-13"><td colspan="10">Week 13</td></tr>
+<tr class="day-row">
+  <td>Sunday</td><td>2025-11-02</td>
+  <td></td><td></td>
+  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Monday</td><td>2025-11-03</td>
+  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+  <td></td>
+</tr>
+<tr class="day-row">
+  <td>Tuesday</td><td>2025-11-04</td>
+  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+  <td data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Wednesday</td><td>2025-11-05</td>
+  <td colspan="8">Off Day for 1A</td>
+</tr>
+<tr class="day-row">
+  <td>Thursday</td><td>2025-11-06</td>
+  <td></td>
+  <td data-subject="MATH0541111">MATH0541111, 603</td>
+  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="GED0232111">GED0232111, 509</td>
+  <td data-subject="CSE0613111">CSE0613111, 509</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+</tr>
+
+<!-- Week 12 -->
+<tr class="week-header week-12"><td colspan="10">Week 12</td></tr>
+<tr class="day-row">
+  <td>Sunday</td><td>2025-10-26</td>
+  <td></td><td></td>
+  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td data-subject="MATH0541111">Monday</td><td>2025-10-27</td>
+  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+  <td></td>
+</tr>
+<tr class="day-row">
+  <td>Tuesday</td><td>2025-10-28</td>
+  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+  <td data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Wednesday</td><td>2025-10-29</td>
+  <td colspan="8">Off Day for 1A</td>
+</tr>
+<tr class="day-row">
+  <td>Thursday</td><td>2025-10-30</td>
+  <td></td>
+  <td data-subject="MATH0541111">MATH0541111, 603</td>
+  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="GED0232111">GED0232111, 509</td>
+  <td data-subject="CSE0613111">CSE0613111, 509</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+</tr>
+
+<!-- Week 11 -->
+<tr class="week-header week-11"><td colspan="10">Week 11</td></tr>
+<tr class="day-row">
+  <td>Sunday</td><td>2025-10-19</td>
+  <td></td><td></td>
+  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Monday</td><td>2025-10-20</td>
+  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+  <td></td>
+</tr>
+<tr class="day-row">
+  <td>Tuesday</td><td>2025-10-21</td>
+  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+  <td data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Wednesday</td><td>2025-10-22</td>
+  <td colspan="8">Off Day for 1A</td>
+</tr>
+<tr class="day-row">
+  <td>Thursday</td><td>2025-10-23</td>
+  <td></td>
+  <td data-subject="MATH0541111">MATH0541111, 603</td>
+  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="GED0232111">GED0232111, 509</td>
+  <td data-subject="CSE0613111">CSE0613111, 509</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+</tr>
+
+<!-- Week 10 -->
+<tr class="week-header week-10"><td colspan="10">Week 10</td></tr>
+<tr class="day-row">
+  <td>Sunday</td><td>2025-10-12</td>
+  <td></td><td></td>
+  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Monday</td><td>2025-10-13</td>
+  <td colspan="2" data-subject="CSE0613111">CSE0613111, 512</td>
+  <td colspan="3" data-subject="CSE0613112">CSE0613112, 212</td>
+  <td colspan="2" data-subject="GED0232112">GED0232112, A1(510), A2(603)</td>
+  <td></td>
+</tr>
+<tr class="day-row">
+  <td>Tuesday</td><td>2025-10-14</td>
+  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+  <td data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Wednesday</td><td>2025-10-15</td>
+  <td colspan="8">Off Day for 1A</td>
+</tr>
+<tr class="day-row">
+  <td>Thursday</td><td>2025-10-16</td>
+  <td></td>
+  <td data-subject="MATH0541111">MATH0541111, 603</td>
+  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="GED0232111">GED0232111, 509</td>
+  <td data-subject="CSE0613111">CSE0613111, 509</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+</tr>
+
+<!-- Week 09 -->
+<tr class="week-header week-09"><td colspan="10">Week 09(8 weeks till mid, 3 weeks gap in between, exam week not counted)</td></tr>
+<tr class="day-row">
+  <td>Sunday</td><td>2025-10-05</td>
+  <td></td><td></td>
+  <td colspan="2" data-subject="CHEM0531175">CHEM0531175, 510</td>
+  <td colspan="2" data-subject="MATH0541111">MATH0541111, 413</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Monday</td><td>2025-10-06</td>
+  <td colspan="7">Holiday, puja</td>
+  <td></td>
+</tr>
+<tr class="day-row">
+  <td>Tuesday</td><td>2025-10-07</td>
+  <td colspan="2" data-subject="GED0232111">GED0232111, 602</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A1(102)</td>
+  <td data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="CHEM0531175">CHEM0531175, 202</td>
+  <td></td><td></td>
+</tr>
+<tr class="day-row">
+  <td>Wednesday</td><td>2025-10-08</td>
+  <td colspan="8">Off Day for 1A</td>
+</tr>
+<tr class="day-row">
+  <td>Thursday</td><td>2025-10-09</td>
+  <td></td>
+  <td data-subject="MATH0541111">MATH0541111, 603</td>
+  <td colspan="2" data-subject="PHY0533111">PHY0533111, 603</td>
+  <td data-subject="GED0232111">GED0232111, 509</td>
+  <td data-subject="CSE0613111">CSE0613111, 509</td>
+  <td colspan="2" data-subject="PHY0533112">PHY0533112, A2(102)</td>
+</tr>
+</table>
+
+<!-- Popup -->
+<div class="overlay"></div>
+<div class="popup">
+  <h3 id="popup-title">Subject</h3>
+  <div id="popup-content"></div>
+  <button id="popup-close">Close</button>
+</div>
+
+<script>
+const popup = document.querySelector(".popup");
+const overlay = document.querySelector(".overlay");
+const popupTitle = document.getElementById("popup-title");
+const popupContent = document.getElementById("popup-content");
+const closeBtn = document.getElementById("popup-close");
+
+// Embedded JSON data
+let classNotesData = {
+  "2025-10-05": {
+    "CHEM0531175": { "status": "taken", "notes":["Chemical Bonding, lone bond"] },
+    "MATH0541111": { "status": "taken", "notes":["Rolles Revise", "Means theorem korayse"] }
+  },
+  "2025-10-07": {
+    "GED0232111": { "status": "taken", "notes":["Argumentative essay(gymming is deathing)"] },
+    "PHY0533112": { "status": "taken", "notes":["Experiment 06"] },
+    "PHY0533111": { "status": "taken", "notes":["khata dekhayse(MID)"] },
+    "CHEM0531175": { "status": "taken", "notes":["Chemical Bonding again, lone bond"] }
+  },
+  "2025-10-09": {
+    "MATH0541111": { "status": "taken", "notes":["Khata dekhayse(MID)"] },
+    "PHY0533111": { "status": "taken", "notes":["Kinetic Theory of gases", "Equation of derivation of kinetic theory of gases"] },
+    "GED0232111": { "status": "taken", "notes":["Khata dekhayse(MID)"] },
+    "CSE0613111": { "status": "taken", "notes":["Khata dekhayse(MID)(CT)"] },
+    "PHY0533112": { "status": "missed", "notes":["Hoy nai, ma'am er kaj chilo"] }
+  },
+
+    
+  "2025-10-12": {
+    "CHEM0531175": { "status": "", "notes": [] },
+    "MATH0541111": { "status": "", "notes": [] }
+  },
+  "2025-10-13": {
+    "GED0232111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "CHEM0531175": { "status": "", "notes": [] }
+  },
+  "2025-10-14": {
+    "OffDay": { "status": "", "notes": [] }
+  },
+  "2025-10-15": {
+    "MATH0541111": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "GED0232111": { "status": "", "notes": [] },
+    "CSE0613111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] }
+  },
+  "2025-10-16": {
+    "FreeSlot": { "status": "", "notes": [] }
+  },
+
+  
+  "2025-10-19": {
+    "CHEM0531175": { "status": "", "notes": [] },
+    "MATH0541111": { "status": "", "notes": [] }
+  },
+  "2025-10-20": {
+    "Holiday": { "status": "", "notes": [] }
+  },
+  "2025-10-21": {
+    "GED0232111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "CHEM0531175": { "status": "", "notes": [] }
+  },
+  "2025-10-22": {
+    "OffDay": { "status": "", "notes": [] }
+  },
+  "2025-10-23": {
+    "MATH0541111": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "GED0232111": { "status": "", "notes": [] },
+    "CSE0613111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] }
+  },
+
+
+  "2025-10-26": {
+    "CHEM0531175": { "status": "", "notes": [] },
+    "MATH0541111": { "status": "", "notes": [] }
+  },
+  "2025-10-27": {
+    "Holiday": { "status": "", "notes": [] }
+  },
+  "2025-10-28": {
+    "GED0232111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "CHEM0531175": { "status": "", "notes": [] }
+  },
+  "2025-10-29": {
+    "OffDay": { "status": "", "notes": [] }
+  },
+  "2025-10-30": {
+    "MATH0541111": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "GED0232111": { "status": "", "notes": [] },
+    "CSE0613111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] }
+  },
+
+  
+  "2025-11-02": {
+    "CHEM0531175": { "status": "", "notes": [] },
+    "MATH0541111": { "status": "", "notes": [] }
+  },
+  "2025-11-03": {
+    "Holiday": { "status": "", "notes": [] }
+  },
+  "2025-11-04": {
+    "GED0232111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "CHEM0531175": { "status": "", "notes": [] }
+  },
+  "2025-11-05": {
+    "OffDay": { "status": "", "notes": [] }
+  },
+  "2025-11-06": {
+    "MATH0541111": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "GED0232111": { "status": "", "notes": [] },
+    "CSE0613111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] }
+  },
+
+
+  "2025-11-09": {
+    "CHEM0531175": { "status": "", "notes": [] },
+    "MATH0541111": { "status": "", "notes": [] }
+  },
+  "2025-11-10": {
+    "Holiday": { "status": "", "notes": [] }
+  },
+  "2025-11-11": {
+    "GED0232111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "CHEM0531175": { "status": "", "notes": [] }
+  },
+  "2025-11-12": {
+    "OffDay": { "status": "", "notes": [] }
+  },
+  "2025-11-13": {
+    "MATH0541111": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "GED0232111": { "status": "", "notes": [] },
+    "CSE0613111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] }
+  },
+
+
+  "2025-11-16": {
+    "CHEM0531175": { "status": "", "notes": [] },
+    "MATH0541111": { "status": "", "notes": [] }
+  },
+  "2025-11-17": {
+    "Holiday": { "status": "", "notes": [] }
+  },
+  "2025-11-18": {
+    "GED0232111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "CHEM0531175": { "status": "", "notes": [] }
+  },
+  "2025-11-19": {
+    "OffDay": { "status": "", "notes": [] }
+  },
+  "2025-11-20": {
+    "MATH0541111": { "status": "", "notes": [] },
+    "PHY0533111": { "status": "", "notes": [] },
+    "GED0232111": { "status": "", "notes": [] },
+    "CSE0613111": { "status": "", "notes": [] },
+    "PHY0533112": { "status": "", "notes": [] }
+  }
+
+
+};
+
+// Apply green/red coloring and popup
+document.querySelectorAll("td[data-subject]").forEach(cell => {
+    const subject = cell.dataset.subject;
+    const date = cell.parentElement.children[1].textContent.trim();
+    const classData = classNotesData[date]?.[subject];
+
+    // Coloring
+    if (classData?.status === "taken") {
+        cell.style.backgroundColor = "#99ff99"; // green
+    } else if (classData?.status === "missed") {
+        cell.style.backgroundColor = "#ff9999"; // red
+    }
+
+    // Popup
+    cell.addEventListener("click", () => {
+        const notes = classData?.notes || ["No notes for this class today."];
+        popupTitle.textContent = subject;
+        popupContent.innerHTML = "<ul><li>" + notes.join("</li><li>") + "</li></ul>";
+        popup.style.display = "block";
+        overlay.style.display = "block";
+    });
+});
+
+// Close popup
+closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+});
+overlay.addEventListener("click", () => {
+    popup.style.display = "none";
+    overlay.style.display = "none";
+});
+</script>
+
+</body>
+</html>
