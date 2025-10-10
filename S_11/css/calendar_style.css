@@ -6,7 +6,15 @@ th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; font-si
 .day-row td:first-child { font-weight: bold; background: #f9f9f9; }
 .day-row:hover { background: #f3f9ff; }
 .time-row { background-color: #cce5ff; font-weight: bold; position: sticky; top: 0; z-index: 2; }
-.time-row th { box-shadow: 0 2px 3px rgba(0,0,0,0.1); }
+/* Make time header sticky for all devices */
+.time-row th {
+  position: sticky;
+  top: 0;
+  background-color: #cce5ff;
+  font-weight: bold;
+  z-index: 5;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
 
 /* Popup styling */
 .popup {
@@ -34,9 +42,20 @@ th, td { border: 1px solid #1e0bca; padding: 6px; word-wrap: break-word; font-si
   background: rgba(0,0,0,0.3); z-index: 5;
 }
 
+/* Mobile compatibility */
 @media screen and (max-width: 768px) {
-  table { display: block; overflow-x: auto; }
-  td, th { padding: 8px 10px; font-size: 12px; }
+  table {
+    display: block;
+    overflow-x: auto;
+    border-collapse: separate; /* keeps sticky stable */
+  }
+
+  th, td {
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
   .week-header td { font-size: 14px; }
 }
 
