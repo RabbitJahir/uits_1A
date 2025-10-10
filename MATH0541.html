@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Differential & Integral Calculus(MATH0541)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ---- General Section Layout ---- */
+        section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        /* ---- Table Section ---- */
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            background-color: white;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1976d2;
+            color: white;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        /* ---- Syllabus Section ---- */
+        h1 {
+            text-align: center;
+            color: #2b3e50;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .topic {
+            position: relative;
+            background-color: white;
+            border: 2px solid #2196f3;
+            border-radius: 12px;
+            width: 300px;
+            padding: 20px;
+            font-size: 20px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .topic:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.03);
+        }
+
+        /* ---- Subtopic Box ---- */
+        .subtopics {
+            position: absolute;
+            top: 0;
+            left: 335px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 220px;
+            display: none;
+        }
+
+        .subtopics ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .subtopics li {
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .subtopics li:last-child {
+            border-bottom: none;
+        }
+
+        /* ---- Home Box ---- */
+        .home-box {
+            background: linear-gradient(135deg, #f0f8ff, #cce7ff);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            margin: 20px auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .home-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .home-box h2 {
+            font-size: 24px;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .home-box p {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- the button -->
+    <div class="home-box">
+        <h2>Welcome to Ungabunga</h2>
+        <a href="index.html" class="home-btn">Home</a>
+    </div>
+
+    <section id="lab">
+        <h1>Differential & Integral Calculus(MATH0541)</h1>
+
+        <h2>Mark Distribution in Class</h2>
+
+        <table>
+            <tr>
+                <th colspan="3">Mark Distribution</th>
+            </tr>
+            <tr>
+                <td>Class Attendance/Performance</td>
+                <td>10</td>
+                <td><input type="text" placeholder="Type here"></td>
+            </tr>
+            <tr>
+                <td>Class Test/Assignment<br>(Avg of before & after mid)</td>
+                <td>10+10</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Mid Term</td>
+                <td>20</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+            <tr>
+                <td>Final</td>
+                <td>50</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td>100</td>
+                <td><input type="text" placeholder="Type here"></td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="syllabus">
+        <h1>Syllabus of Final</h1>
+        <div class="container">
+
+            <div class="topic" onclick="toggleSubtopics(1)">
+                1. Successive derivative(click me)
+                <div class="subtopics" id="sub1">
+                    <ul>
+                        <li>xx</li>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(2)">
+                2. Partial derivative(click me)
+                <div class="subtopics" id="sub2">
+                    <ul>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(3)">
+                3. Multiple integration(click me)
+                <div class="subtopics" id="sub3">
+                    <ul></ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(4)">
+                4. Integration(click me)
+                <div class="subtopics" id="sub4">
+                    <ul></ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(5)">
+                5. Area finding(click me)
+                <div class="subtopics" id="sub5">
+                    <ul></ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(6)">
+                6. Rolles and mean theorem(click me)
+                <div class="subtopics" id="sub6">
+                    <ul>
+                        <li><b>Rolles</b></li>
+                        <li>1. Solve for f(a)=f(b), if equal, continuous, else not.<br>2. Find f '(x), solve for f '(a)=f '(b), if equal differentiable, else not.<br>3. do f '(c), solve for c, if c is inside the given range, thats the answer.</li>
+                        <li>1. f(x) = x(x-3)</li>
+                        <li>2. f(x) = -3x&radic;(x+1)</li>
+                        <li>3. f(x) = x<sup>2</sup>-5x+4, [1,4]</li>
+                        <li>4. f(x) = x<sup>2/3</sup>-1, [-8,8]</li>
+                        <li>5. f(x) = <sup>x<sup>2</sup>-2x-3</sup>&frasl;<sub>x+2</sub>, [-1,3]</li>
+                        <li>6. f(x) = <sup>x<sup>2</sup>-1</sup>&frasl;<sub>x</sub>, [-1,1]</li>
+                        <li>7. f(x) = cos x, [0, 2π]</li>
+                        <li><b>Means</b></li>
+                        <li>1. f(x) = x<sup>3</sup>, [0, 1]</li>
+                        <li>2. f(x) = x<sup>4</sup>-8x, [0, 2]</li>
+                        <li>3. f(x) = <sup>x+1</sup>&frasl;<sub>x</sub>, [-1,2]</li>
+                        <li>4. f(x) = sin x, [0, π]</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(7)">
+                7. Beta and gamma function(click me)
+                <div class="subtopics" id="sub7">
+                    <ul></ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(8)">
+                8. Differential and Integral Calculus(click me)
+                <div class="subtopics" id="sub8">
+                    <ul></ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(9)">
+                9.Absolute maxima and minima(click me)
+                <div class="subtopics" id="sub9">
+                    <ul></ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // -------- Store Marks for "Mark Distribution in Class" --------
+        const classInputs = document.querySelectorAll('#lab table input');
+
+        classInputs.forEach((input, index) => {
+            const saved = localStorage.getItem('mathMark' + index);
+            if (saved) input.value = saved;
+
+            input.addEventListener('input', () => {
+                localStorage.setItem('mathMark' + index, input.value);
+            });
+        });
+
+        // -------- Syllabus Subtopic Toggle --------
+        function toggleSubtopics(num) {
+            const selected = document.getElementById("sub" + num);
+            const all = document.querySelectorAll(".subtopics");
+
+            all.forEach(sub => {
+                if (sub !== selected) sub.style.display = "none";
+            });
+
+            selected.style.display = (selected.style.display === "block") ? "none" : "block";
+        }
+    </script>
+
+</body>
+
+</html>
