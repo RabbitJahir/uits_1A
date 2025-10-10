@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Engineering Physics</title>
+
+  <!-- Page styling CSS part-->
+    <link rel="stylesheet" href="../css/phy.css">
+   <!-- home button box-->
+  <link rel="stylesheet" href="../css/home_box_code.css">
+
+        
+</head>
+
+<body>
+
+    <!-- the button -->
+    <div class="home-box">
+        <h2>Welcome to Ungabunga</h2>
+        <a href="../../index.html" class="home-btn">Home</a>
+    </div>
+
+
+    <section id="lab">
+        <h1>Engineering Physics</h1>
+
+        <h2>Mark Distribution in CLass</h2>
+
+        <table>
+            <tr>
+                <th colspan="3">Mark Distribution</th>
+            </tr>
+            <tr>
+                <td>Class Attendance/Perfromance</td>
+                <td>10</td>
+                <td><input type="text" placeholder="Type here"></td>
+            </tr>
+            <tr>
+                <td>Class Test/Assignment<br>(Avg of before & after mid)</td>
+                <td>10+10</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Mid Term</td>
+                <td>20</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+            <tr>
+                <td>Final</td>
+                <td>50</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>100</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+        </table>
+
+        <h2>Mark Distribution in Lab</h2>
+
+        <table>
+            <tr>
+                <th colspan="3">Mark Distribution</th>
+            </tr>
+            <tr>
+                <td>Lab Attendance/Perfromance</td>
+                <td>10</td>
+                <td><input type="text" placeholder="Type here..."></td>
+            </tr>
+            <tr>
+                <td>Reporting</td>
+                <td>15</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Quizzes</td>
+                <td>15</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Viva</td>
+                <td>10</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Final<br><br>Theory<br>Table & Data Collection<br>Calculations & Results<br>Discussions</td>
+                <td>50<br><br>10<br>15<br>15<br>10</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>100</td>
+                <td><input type="text" placeholder="keep a screenshot"></td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- SECTION 2: Syllabus of Final -->
+    <section id="syllabus">
+        <h1>Syllabus of Final</h1>
+        <div class="container">
+
+            <!-- Topic 1 -->
+            <div class="topic" onclick="toggleSubtopics(1)">
+                Thermodynamics(click me)
+                <div class="subtopics" id="sub1">
+                    <ul>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                        <li>add hobe</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="topic" onclick="toggleSubtopics(2)">
+                Kinetic Theory of Gases(click me)
+                <div class="subtopics" id="sub2">
+                    <ul>
+                        <li>Theory of Kinetic Theory of gases</li>
+                        <li>Derivation of Equation of Kinetic Theory of gases</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="topic" onclick="toggleSubtopics(3)">
+                Optics(click me)
+                <div class="subtopics" id="sub3">
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<!-- Experiments-->
+    <section id="experiment_topic">
+        <h1>Experiment Topics</h1>
+        <div class="container">
+
+            <div class="topic" onclick="toggleSubtopics(101)">
+                Experiment 1
+                <div class="subtopics" id="sub101">
+                    <ul>
+                        <li><b>Determination of radius of cross-section of a wire with screw gauge and hence find it's area of cross section</b></li>
+                        <li>Fixed lomba scale ta main scale/linear scale and jeita ghurano jay, circular scale.</li>
+                        <li>place the wire in between the screw, turn round the ratchet so it gets fixed, beshi jore fix koiro na</li>
+                        <li>Linear scale readings er sob same asar kotha, cirluar scale +-5</li>
+                        <li>Least count <br>= small scale of main scale &frasl; Total division of circular scale<br>=0.5&frasl;50<br>= 0.01mm</li>
+                        <li>Value of circular scale = least count * circular scale divisions</li>
+                        <li>Total readings = Value of circular scale + linear scale readings</li>
+                        <li>Diameter = mean of total readings </li>
+                        <li>Mean radius = d/2 mm and cm duita tei show korte hobe, cm diye baki kaj</li>
+                        <li>Area of cross section, A = 𝜋*r<sup>2</sup></li>
+                        <li>Result in cm<sup>2</sup></li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(102)">
+                Experiment 2
+                <div class="subtopics" id="sub102">
+                    <ul>
+                        <li>><b>Determination of radius of cross-section of a wire with slide calipers and hence find it's area of cross section</b></li>
+                        <li>Fixed lomba scale ta main scale/linear scale and jeita narano jay, vernier scale.</li>
+                        <li>akta ball dibe, seta measuring jaw te rakhte hobe</li>
+                        <li>main and vernier er jei lomba measurement er daag ase, konta perfectly 180 degree hoy dekhte hobe, 0 baad diye porer sob line guna oi 180 degree line porjonto, 7=14, 5=10</li>
+                        <li>linear scale reading +-1 or +-2 beshi na niye bhalo, vernier onek different hoite pare</li>
+                        <li>Least count or vernier constant <br>= small scale of main scale &frasl; Total division of vernier scale<br>=1&frasl;20<br>= 0.05mm</li>
+                        <li>Vernier scale reading = vernier constant * vernier scale divisions</li>
+                        <li>Total reading = linear scale reading + vernier scale reading</li>
+                        <li>Diameter is mean of total reading</li>
+                        <li>mean readius = d/2 in both mm and cm</li>
+                        <li>Area of cross section, A = 𝜋*r<sup>2</sup></li>
+                         <li>Result in cm<sup>2</sup></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(103)">
+                Experiment 3
+                <div class="subtopics" id="sub103">
+                    <ul>
+                        <li><b>Determination of the time period for oscillation of a simpe pendulum by using Simple Harmonic mMotion(SHM) method and hence calculate the value of acceleration due to grvity(g)</b></li>
+                        <li>Table-I : same as exp. 2</li>
+                        <li>Table-II: less than 4 degree te narayte hobe, mane onek kom push korte hobe</li>
+                        <li>bibhinno number of oscillations e korte hobe</li>
+                        <li>Total time to 15 ta, Time peroid = total time &frasl; no. of oscillations, Mean hoche sob gulir aksathe mean kora</li>
+                        <li>Effective length, L = l(including the anta, upto the start of the ball) + r(table-I in cm)</li>
+                        <li>g = 4*𝜋<sup>2</sup>*(L&frasl;T<sup>2</sup>)</li>
+                        <li>Error = modulus | g-g' &frasl; g | * 100%, g= 9.81, g'= jeta ber korsi</li>
+                        <li>Result = Acceleration due to gravity= something and error = something</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(104)">
+                Experiment 4
+                <div class="subtopics" id="sub104">
+                    <ul>
+                        <li><b>Determination of the value of acceleration due to gravity(g) bby a compund pendulum</b></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(105)">
+                Experiment 5
+                <div class="subtopics" id="sub105">
+                    <ul>
+                        <li><b>Determination of the stiffness constant and effective mass of a spiral spring with the method of Simple Harmonic Motion(SHM)</b></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic" onclick="toggleSubtopics(106)">
+                Experiment 6
+                <div class="subtopics" id="sub106">
+                    <ul>
+                        <li><b>Determination of the radius of curvature of a spherical surface with a spherometer</b></li>
+                        <li>Take readings on base plate first, jehetu plain, linear scale readings 0 asar kotha/asbe (0-1 er middle e asle 0). Circular change hobe, but try to keep readinds between +-20</li>
+                        <li>Readings on the curved surface of glass, Linear reading must different asbe(59-60 er middle e asle 59), at least akta, circular +- 20</li>
+                        <li>Least count=<br>(smallest reading on the sircular scale)pitch &frasl; total readings on the circular scale<br>=1&frasl;100<br>=0.01</li>
+                        <li>Fractional part = circular scale * least count</li>
+                        <li>Total reading = fractional + linear</li>
+                        <li>all mm</li>
+                        <li>h = h2-h1 (mm)</li>
+                        <li>spherometer niye copy te 3 ta pa er dag bosaw, triangle banaw, a1, a2, a3, measurement neo, at least akta different asbe, +-1, mean value</li>
+                        <li>R=(a<sup>2</sup> &frasl; 6h)+(h &frasl; 2)</li>
+                        <li>Result = radius of curvature in cm</li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <!-- Script-->
+<script src="../js/phy.js"></script>
+
+</body>
+
+</html>
