@@ -40,23 +40,32 @@ th, td {
   font-size: 16px;
 }
 
-/* Sticky time row */
+/* Sticky time row remains at top */
 thead .time-row th {
-  background-color: #cce5ff;
-  font-weight: bold;
   position: sticky;
   top: 0;
   z-index: 10;
-  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+  background-color: #cce5ff;
+  font-weight: bold;
 }
 
-/* First column sticky */
-.day-row td:first-child {
-  font-weight: bold;
-  background-color: #f9f9f9;
+/* Sticky first column (day) */
+.day-row td:nth-child(1),
+thead th:nth-child(1) {
   position: sticky;
   left: 0;
+  background-color: #f9f9f9; /* match table background */
+  font-weight: bold;
   z-index: 5;
+}
+
+/* Sticky second column (additional info / subject etc.) */
+.day-row td:nth-child(2),
+thead th:nth-child(2) {
+  position: sticky;
+  left: 100px; /* width of first column, adjust to match actual width */
+  background-color: #f9f9f9;
+  z-index: 4;
 }
 
 /* Row hover effect */
