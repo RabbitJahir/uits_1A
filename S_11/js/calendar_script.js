@@ -43,6 +43,7 @@ async function loadDataFromFirebase() {
     refreshColors();
   } catch (error) {
     console.error("❌ Error loading calendar data:", error);
+    alert("Failed to load calendar data. Check Firestore rules or connection.");
   }
 }
 
@@ -77,9 +78,9 @@ function refreshColors() {
 // 🟡 Popup & editing logic
 document.querySelectorAll("td[data-subject]").forEach(cell => {
   const subject = cell.dataset.subject;
-  const date = cell.parentElement.children[1].textContent.trim();
 
   cell.addEventListener("click", () => {
+    const date = cell.parentElement.children[1].textContent.trim();
     const classData = classNotesData[date]?.[subject] || { status: "", notes: [] };
     const notes = classData.notes?.join("\n") || "";
 
@@ -94,28 +95,24 @@ document.querySelectorAll("td[data-subject]").forEach(cell => {
     popup.style.display = "block";
     overlay.style.display = "block";
 
-    // 🟠 Remove any old listener and add a new one
+    // 🟠 Edit button
     const editBtn = document.getElementById("edit-btn");
-    editBtn.replaceWith(editBtn.cloneNode(true));
-    const newEditBtn = document.getElementById("edit-btn");
-
-    newEditBtn.addEventListener("click", async () => {
+    editBtn.addEventListener("click", async () => {
       const pass = prompt("Enter password to edit:");
       if (pass !== "cocacola") {
         alert("❌ Wrong password!");
         return;
       }
 
-      // 🔹 Sign in anonymously to satisfy Firestore rules
+      // 🔹 Sign in anonymously for Firestore write permission
       try {
         await auth.signInAnonymously();
       } catch (err) {
         console.error("❌ Auth error:", err);
-        alert("Authentication failed, cannot edit.");
+        alert("Authentication failed. Cannot edit.");
         return;
       }
 
-      // Show editable fields
       popupContent.innerHTML = `
         <label><b>Status:</b></label>
         <select id="edit-status" style="margin:5px 0;">
@@ -132,14 +129,9 @@ document.querySelectorAll("td[data-subject]").forEach(cell => {
 
       // 🟢 Save edits
       const saveBtn = document.getElementById("save-btn");
-      saveBtn.replaceWith(saveBtn.cloneNode(true));
-      const newSaveBtn = document.getElementById("save-btn");
-
-      newSaveBtn.addEventListener("click", async () => {
+      saveBtn.addEventListener("click", async () => {
         const newStatus = document.getElementById("edit-status").value;
-        const newNotes = document.getElementById("edit-notes").value
-          .split("\n")
-          .filter(n => n.trim() !== "");
+        const newNotes = document.getElementById("edit-notes").value.split("\n").filter(n => n.trim() !== "");
 
         if (!classNotesData[date]) classNotesData[date] = {};
         classNotesData[date][subject] = { status: newStatus, notes: newNotes };
