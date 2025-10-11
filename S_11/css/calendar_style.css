@@ -48,7 +48,7 @@ th, td {
 thead th {
   position: sticky;
   top: 0;
-  background-color: #f9f9f9;
+  background-color: #99ccff;
   z-index: 10; /* ensures header stays above table cells */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
  -webkit-sticky: top;
@@ -71,7 +71,7 @@ thead th:nth-child(1) {
 thead th:nth-child(2) {
   position: sticky;
   left: 80px; /* width of first column */
-  background-color: #f9f9f9;
+  background-color: #99ccff;
   font-weight: bold;
   z-index: 4;
 }
