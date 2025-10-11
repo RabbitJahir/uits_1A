@@ -22,7 +22,7 @@ h2 {
 /* ====== BASE TABLE STYLE ====== */
 table {
   table-layout: fixed;
-  width: 90%;
+  width: 150%;
   margin: 0 auto;
   border-collapse: collapse;
   background-color: #FFF5EE;
