@@ -17,21 +17,23 @@ h2 {
   position: relative;
 }
 
-/* Table styling */
+/* ====== BASE TABLE STYLE ====== */
 table {
+  width: 90%;
+  margin: 0 auto;
   border-collapse: collapse;
-  width: 100%;
-  table-layout: fixed;
-  min-width: 700px; /* ensures proper column alignment on mobile */
+  background-color: #99ccff;
+  color: #000;
+  font-family: Arial, sans-serif;
 }
 
 th, td {
-  border: 1px solid #1e0bca;
-  padding: 6px;
-  word-wrap: break-word;
-  font-size: 14px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border: 1px solid #ccc;
   text-align: center;
 }
+
 
 /* Week header */
 .week-header td {
@@ -40,7 +42,7 @@ th, td {
   font-size: 16px;
 }
 
-/* Sticky time row remains at top */
+/* Sticky time row remains at top 
 thead .time-row th {
   position: sticky;
   top: 0;
@@ -49,6 +51,17 @@ thead .time-row th {
   font-weight: bold;
   -webkit-sticky: top;
 }
+/*
+
+/* ====== STICKY HEADER ====== */
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #99ccff;
+  z-index: 2; /* ensures header stays above table cells */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Sticky first column (day) 
 .day-row td:nth-child(1),
@@ -118,23 +131,47 @@ thead th:nth-child(2) {
   z-index: 50;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
+/* ====== MOBILE (up to 600px) ====== */
+@media (max-width: 600px) {
   table {
-    min-width: 700px;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  th {
+    font-size: 15px;
+  }
+
+  thead th {
+    top: 0; /* ensure stickiness stays consistent */
+  }
+}
+
+/* ====== TABLETS (601px–900px) ====== */
+@media (min-width: 601px) and (max-width: 900px) {
+  table {
+    width: 95%;
+  }
+
+  th, td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ====== DESKTOP (above 900px) ====== */
+@media (min-width: 901px) {
+  table {
+    width: 80%;
   }
 
   th, td {
     padding: 8px 10px;
     font-size: 12px;
-  }
-
-  .week-header td {
-    font-size: 14px;
-  }
-
-  .day-row:hover {
-    background-color: #f0f9ff;
   }
 }
 
