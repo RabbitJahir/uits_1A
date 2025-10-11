@@ -1,10 +1,9 @@
 // 🔹 Firebase SDK should already be included in HTML
-// Example initialization:
 // <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 // <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 // <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
-// 🔹 Replace YOUR_FIREBASE_CONFIG with your actual config
+// 🔹 Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyC9xD7IKkO9sphK8JtBqmXw0ZXV3tl-vj0",
   authDomain: "uits581a.firebaseapp.com",
@@ -26,7 +25,7 @@ const popupTitle = document.getElementById("popup-title");
 const popupContent = document.getElementById("popup-content");
 const closeBtn = document.getElementById("popup-close");
 
-// 🔹 Reference Firestore
+// 🔹 Firestore reference
 const calendarRef = db.collection("calendarData");
 
 // 🔹 Local cache
@@ -54,6 +53,7 @@ async function saveDateToFirebase(date, data) {
     console.log(`✅ Saved ${date} to Firebase`);
   } catch (error) {
     console.error("❌ Error saving data:", error);
+    alert("Failed to save data. Check your connection or Firestore rules.");
   }
 }
 
@@ -94,8 +94,12 @@ document.querySelectorAll("td[data-subject]").forEach(cell => {
     popup.style.display = "block";
     overlay.style.display = "block";
 
-    // 🟠 Edit button
-    document.getElementById("edit-btn").addEventListener("click", async () => {
+    // 🟠 Remove any old listener and add a new one
+    const editBtn = document.getElementById("edit-btn");
+    editBtn.replaceWith(editBtn.cloneNode(true));
+    const newEditBtn = document.getElementById("edit-btn");
+
+    newEditBtn.addEventListener("click", async () => {
       const pass = prompt("Enter password to edit:");
       if (pass !== "cocacola") {
         alert("❌ Wrong password!");
@@ -107,6 +111,8 @@ document.querySelectorAll("td[data-subject]").forEach(cell => {
         await auth.signInAnonymously();
       } catch (err) {
         console.error("❌ Auth error:", err);
+        alert("Authentication failed, cannot edit.");
+        return;
       }
 
       // Show editable fields
@@ -125,19 +131,22 @@ document.querySelectorAll("td[data-subject]").forEach(cell => {
       `;
 
       // 🟢 Save edits
-      document.getElementById("save-btn").addEventListener("click", async () => {
-        const newStatus = document.getElementById("edit-status").value;
-        const newNotes = document.getElementById("edit-notes").value.split("\n").filter(n => n.trim() !== "");
+      const saveBtn = document.getElementById("save-btn");
+      saveBtn.replaceWith(saveBtn.cloneNode(true));
+      const newSaveBtn = document.getElementById("save-btn");
 
-        // Update local data
+      newSaveBtn.addEventListener("click", async () => {
+        const newStatus = document.getElementById("edit-status").value;
+        const newNotes = document.getElementById("edit-notes").value
+          .split("\n")
+          .filter(n => n.trim() !== "");
+
         if (!classNotesData[date]) classNotesData[date] = {};
         classNotesData[date][subject] = { status: newStatus, notes: newNotes };
 
-        // Save to Firebase
         await saveDateToFirebase(date, classNotesData[date]);
-
-        // Refresh visuals
         refreshColors();
+
         popup.style.display = "none";
         overlay.style.display = "none";
       });
