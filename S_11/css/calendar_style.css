@@ -35,6 +35,12 @@ th, td {
   font-size: 12px;
   border: 1px solid #000080;
   text-align: center;
+
+   /* fixes overflowing text */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 150px; /* optional */
 }
 
 
