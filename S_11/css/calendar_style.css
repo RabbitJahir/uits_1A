@@ -62,6 +62,7 @@ thead th {
   background-color: #99ccff;
   z-index: 10; /* ensures header stays above table cells */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ -webkit-sticky: top;
 }
 
 
@@ -133,23 +134,24 @@ thead th:nth-child(2) {
   z-index: 50;
 }
 
-/* ====== MOBILE (up to 600px) ====== */
-@media (max-width: 600px) {
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
   table {
-    width: 100%;
+    min-width: 700px;
   }
 
   th, td {
-    padding: 12px 14px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .week-header td {
     font-size: 14px;
   }
 
-  th {
-    font-size: 15px;
-  }
-
-  thead th {
-    top: 0; /* ensure stickiness stays consistent */
+  .day-row:hover {
+    background-color: #f0f9ff;
   }
 }
 
