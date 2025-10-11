@@ -139,13 +139,22 @@ thead th:nth-child(2) {
 }
 
 /* Week coloring */
+/* future week */
 .week-15 td, .week-14 td, .week-13 td, .week-12 td,
-.week-11 td, .week-10 td {
+.week-11 td
+{
+  background-color: #808080;
+  color: #000;
+}
+/* running and upcoming week */
+.week-10 td
+{
   background-color: #99ccff;
   color: #000;
 }
-
-.week-09 td {
+/* gone week*/
+.week-09 td 
+{
   background-color: #ffd699;
   color: #000;
 }
