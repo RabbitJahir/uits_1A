@@ -44,17 +44,6 @@ th, td {
   font-size: 16px;
 }
 
-/* Sticky time row remains at top 
-thead .time-row th {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background-color: #cce5ff;
-  font-weight: bold;
-  -webkit-sticky: top;
-}
-/*
-
 /* ====== STICKY HEADER ====== */
 thead th {
   position: sticky;
