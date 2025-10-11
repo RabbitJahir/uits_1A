@@ -149,8 +149,8 @@ editBtn.addEventListener("click", async () => {
         });
       });
     });
-  });
-}
+  };
+
 
 // 🔴 Close popup
 closeBtn.addEventListener("click", () => {
