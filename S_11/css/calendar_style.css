@@ -134,12 +134,14 @@ thead th:nth-child(2) {
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   table {
-    min-width: 700px;
+    min-width: 750px;
   }
 
   th, td {
     padding: 8px 10px;
     font-size: 12px;
+    max-width: 120px; /* ensures text wraps */
+    white-space: normal; /* allow wrap */
   }
 
   .week-header td {
