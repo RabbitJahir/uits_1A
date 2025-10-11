@@ -21,6 +21,7 @@ h2 {
 
 /* ====== BASE TABLE STYLE ====== */
 table {
+  table-layout: fixed;
   width: 90%;
   margin: 0 auto;
   border-collapse: collapse;
