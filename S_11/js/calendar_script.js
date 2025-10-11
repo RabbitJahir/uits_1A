@@ -1,6 +1,7 @@
 // 🔹 Firebase SDK should already be included in HTML
 // Example initialization:
 // <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+// <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 // <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
 // 🔹 Replace YOUR_FIREBASE_CONFIG with your actual config
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+const auth = firebase.auth();
 
 // 🔹 Popup elements
 const popup = document.querySelector(".popup");
@@ -93,11 +95,18 @@ document.querySelectorAll("td[data-subject]").forEach(cell => {
     overlay.style.display = "block";
 
     // 🟠 Edit button
-    document.getElementById("edit-btn").addEventListener("click", () => {
+    document.getElementById("edit-btn").addEventListener("click", async () => {
       const pass = prompt("Enter password to edit:");
       if (pass !== "cocacola") {
         alert("❌ Wrong password!");
         return;
+      }
+
+      // 🔹 Sign in anonymously to satisfy Firestore rules
+      try {
+        await auth.signInAnonymously();
+      } catch (err) {
+        console.error("❌ Auth error:", err);
       }
 
       // Show editable fields
