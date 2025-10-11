@@ -1,211 +1,150 @@
+// 🔹 Firebase SDK should already be included in HTML
+// Example initialization:
+// <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+// <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+// 🔹 Replace YOUR_FIREBASE_CONFIG with your actual config
+const firebaseConfig = {
+  apiKey: "AIzaSyC9xD7IKkO9sphK8JtBqmXw0ZXV3tl-vj0",
+  authDomain: "uits581a.firebaseapp.com",
+  projectId: "uits581a",
+  storageBucket: "uits581a.firebasestorage.app",
+  messagingSenderId: "330608408945",
+  appId: "1:330608408945:web:c44a31a92935f921fb5ed0"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// 🔹 Popup elements
 const popup = document.querySelector(".popup");
 const overlay = document.querySelector(".overlay");
 const popupTitle = document.getElementById("popup-title");
 const popupContent = document.getElementById("popup-content");
 const closeBtn = document.getElementById("popup-close");
 
-// Embedded JSON data
-let classNotesData = {
-  "2025-10-05": {
-    "CHEM0531175": { "status": "taken", "notes":["Chemical Bonding, lone bond"] },
-    "MATH0541111": { "status": "taken", "notes":["Rolles Revise", "Means theorem korayse"] }
-  },
-  "2025-10-07": {
-    "GED0232111": { "status": "taken", "notes":["Argumentative essay(gymming is deathing)"] },
-    "PHY0533112": { "status": "taken", "notes":["Experiment 06"] },
-    "PHY0533111": { "status": "taken", "notes":["khata dekhayse(MID)"] },
-    "CHEM0531175": { "status": "taken", "notes":["Chemical Bonding again, lone bond"] }
-  },
-  "2025-10-09": {
-    "MATH0541111": { "status": "taken", "notes":["Khata dekhayse(MID)"] },
-    "PHY0533111": { "status": "taken", "notes":["Kinetic Theory of gases", "Equation of derivation of kinetic theory of gases"] },
-    "GED0232111": { "status": "taken", "notes":["Khata dekhayse(MID)"] },
-    "CSE0613111": { "status": "taken", "notes":["Khata dekhayse(MID)(CT)"] },
-    "PHY0533112": { "status": "missed", "notes":["Hoy nai, ma'am er kaj chilo"] }
-  },
+// 🔹 Reference Firestore
+const calendarRef = db.collection("calendarData");
 
-    
-  "2025-10-12": {
-    "CHEM0531175": { "status": "", "notes": [] },
-    "MATH0541111": { "status": "", "notes": [] }
-  },
-  "2025-10-13": {
-    "GED0232111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "CHEM0531175": { "status": "", "notes": [] }
-  },
-  "2025-10-14": {
-    "OffDay": { "status": "", "notes": [] }
-  },
-  "2025-10-15": {
-    "MATH0541111": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "GED0232111": { "status": "", "notes": [] },
-    "CSE0613111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] }
-  },
-  "2025-10-16": {
-    "FreeSlot": { "status": "", "notes": [] }
-  },
+// 🔹 Local cache
+let classNotesData = {};
 
-  
-  "2025-10-19": {
-    "CHEM0531175": { "status": "", "notes": [] },
-    "MATH0541111": { "status": "", "notes": [] }
-  },
-  "2025-10-20": {
-    "Holiday": { "status": "", "notes": [] }
-  },
-  "2025-10-21": {
-    "GED0232111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "CHEM0531175": { "status": "", "notes": [] }
-  },
-  "2025-10-22": {
-    "OffDay": { "status": "", "notes": [] }
-  },
-  "2025-10-23": {
-    "MATH0541111": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "GED0232111": { "status": "", "notes": [] },
-    "CSE0613111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] }
-  },
-
-
-  "2025-10-26": {
-    "CHEM0531175": { "status": "", "notes": [] },
-    "MATH0541111": { "status": "", "notes": [] }
-  },
-  "2025-10-27": {
-    "Holiday": { "status": "", "notes": [] }
-  },
-  "2025-10-28": {
-    "GED0232111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "CHEM0531175": { "status": "", "notes": [] }
-  },
-  "2025-10-29": {
-    "OffDay": { "status": "", "notes": [] }
-  },
-  "2025-10-30": {
-    "MATH0541111": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "GED0232111": { "status": "", "notes": [] },
-    "CSE0613111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] }
-  },
-
-  
-  "2025-11-02": {
-    "CHEM0531175": { "status": "", "notes": [] },
-    "MATH0541111": { "status": "", "notes": [] }
-  },
-  "2025-11-03": {
-    "Holiday": { "status": "", "notes": [] }
-  },
-  "2025-11-04": {
-    "GED0232111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "CHEM0531175": { "status": "", "notes": [] }
-  },
-  "2025-11-05": {
-    "OffDay": { "status": "", "notes": [] }
-  },
-  "2025-11-06": {
-    "MATH0541111": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "GED0232111": { "status": "", "notes": [] },
-    "CSE0613111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] }
-  },
-
-
-  "2025-11-09": {
-    "CHEM0531175": { "status": "", "notes": [] },
-    "MATH0541111": { "status": "", "notes": [] }
-  },
-  "2025-11-10": {
-    "Holiday": { "status": "", "notes": [] }
-  },
-  "2025-11-11": {
-    "GED0232111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "CHEM0531175": { "status": "", "notes": [] }
-  },
-  "2025-11-12": {
-    "OffDay": { "status": "", "notes": [] }
-  },
-  "2025-11-13": {
-    "MATH0541111": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "GED0232111": { "status": "", "notes": [] },
-    "CSE0613111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] }
-  },
-
-
-  "2025-11-16": {
-    "CHEM0531175": { "status": "", "notes": [] },
-    "MATH0541111": { "status": "", "notes": [] }
-  },
-  "2025-11-17": {
-    "Holiday": { "status": "", "notes": [] }
-  },
-  "2025-11-18": {
-    "GED0232111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "CHEM0531175": { "status": "", "notes": [] }
-  },
-  "2025-11-19": {
-    "OffDay": { "status": "", "notes": [] }
-  },
-  "2025-11-20": {
-    "MATH0541111": { "status": "", "notes": [] },
-    "PHY0533111": { "status": "", "notes": [] },
-    "GED0232111": { "status": "", "notes": [] },
-    "CSE0613111": { "status": "", "notes": [] },
-    "PHY0533112": { "status": "", "notes": [] }
+// 🟢 Load data from Firebase on start
+async function loadDataFromFirebase() {
+  try {
+    const snapshot = await calendarRef.get();
+    classNotesData = {};
+    snapshot.forEach(doc => {
+      classNotesData[doc.id] = doc.data();
+    });
+    console.log("✅ Calendar data loaded from Firebase");
+    refreshColors();
+  } catch (error) {
+    console.error("❌ Error loading calendar data:", error);
   }
+}
 
+// 🟢 Save a single date’s data to Firebase
+async function saveDateToFirebase(date, data) {
+  try {
+    await calendarRef.doc(date).set(data);
+    console.log(`✅ Saved ${date} to Firebase`);
+  } catch (error) {
+    console.error("❌ Error saving data:", error);
+  }
+}
 
-};
-
-// Apply green/red coloring and popup
-document.querySelectorAll("td[data-subject]").forEach(cell => {
+// 🟢 Refresh colors for all cells
+function refreshColors() {
+  document.querySelectorAll("td[data-subject]").forEach(cell => {
     const subject = cell.dataset.subject;
     const date = cell.parentElement.children[1].textContent.trim();
     const classData = classNotesData[date]?.[subject];
 
-    // Coloring
     if (classData?.status === "taken") {
-        cell.style.backgroundColor = "#99ff99"; // green
+      cell.style.backgroundColor = "#99ff99"; // green
     } else if (classData?.status === "missed") {
-        cell.style.backgroundColor = "#ff9999"; // red
+      cell.style.backgroundColor = "#ff9999"; // red
+    } else {
+      cell.style.backgroundColor = ""; // reset
     }
+  });
+}
 
-    // Popup
-    cell.addEventListener("click", () => {
-        const notes = classData?.notes || ["No notes for this class today."];
-        popupTitle.textContent = subject;
-        popupContent.innerHTML = "<ul><li>" + notes.join("</li><li>") + "</li></ul>";
-        popup.style.display = "block";
-        overlay.style.display = "block";
+// 🟡 Popup & editing logic
+document.querySelectorAll("td[data-subject]").forEach(cell => {
+  const subject = cell.dataset.subject;
+  const date = cell.parentElement.children[1].textContent.trim();
+
+  cell.addEventListener("click", () => {
+    const classData = classNotesData[date]?.[subject] || { status: "", notes: [] };
+    const notes = classData.notes?.join("\n") || "";
+
+    popupTitle.textContent = `${subject} (${date})`;
+    popupContent.innerHTML = `
+      <p><b>Status:</b> ${classData.status || "None"}</p>
+      <p><b>Notes:</b></p>
+      <ul><li>${classData.notes.length ? classData.notes.join("</li><li>") : "No notes yet."}</li></ul>
+      <button id="edit-btn" style="margin-top:10px;padding:6px 10px;background:#4CAF50;color:#fff;border:none;border-radius:5px;cursor:pointer;">Edit</button>
+    `;
+
+    popup.style.display = "block";
+    overlay.style.display = "block";
+
+    // 🟠 Edit button
+    document.getElementById("edit-btn").addEventListener("click", () => {
+      const pass = prompt("Enter password to edit:");
+      if (pass !== "cocacola") {
+        alert("❌ Wrong password!");
+        return;
+      }
+
+      // Show editable fields
+      popupContent.innerHTML = `
+        <label><b>Status:</b></label>
+        <select id="edit-status" style="margin:5px 0;">
+          <option value="">None</option>
+          <option value="taken" ${classData.status === "taken" ? "selected" : ""}>Taken</option>
+          <option value="missed" ${classData.status === "missed" ? "selected" : ""}>Missed</option>
+        </select>
+        <br>
+        <label><b>Notes:</b></label><br>
+        <textarea id="edit-notes" rows="5" style="width:90%;margin-top:5px;">${notes}</textarea>
+        <br><br>
+        <button id="save-btn" style="padding:6px 10px;background:#2196F3;color:#fff;border:none;border-radius:5px;cursor:pointer;">Save</button>
+      `;
+
+      // 🟢 Save edits
+      document.getElementById("save-btn").addEventListener("click", async () => {
+        const newStatus = document.getElementById("edit-status").value;
+        const newNotes = document.getElementById("edit-notes").value.split("\n").filter(n => n.trim() !== "");
+
+        // Update local data
+        if (!classNotesData[date]) classNotesData[date] = {};
+        classNotesData[date][subject] = { status: newStatus, notes: newNotes };
+
+        // Save to Firebase
+        await saveDateToFirebase(date, classNotesData[date]);
+
+        // Refresh visuals
+        refreshColors();
+        popup.style.display = "none";
+        overlay.style.display = "none";
+      });
     });
+  });
 });
 
-// Close popup
+// 🔴 Close popup
 closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-    overlay.style.display = "none";
+  popup.style.display = "none";
+  overlay.style.display = "none";
 });
 overlay.addEventListener("click", () => {
-    popup.style.display = "none";
-    overlay.style.display = "none";
+  popup.style.display = "none";
+  overlay.style.display = "none";
 });
+
+// 🔄 Load data when page starts
+loadDataFromFirebase();

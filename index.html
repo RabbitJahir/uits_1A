@@ -1,70 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My University Portal</title>
-    <style>
-        /* Reset some default styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My University Portal</title>
 
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #f5f7fa, #c3cfe2);
-            color: #333;
-        }
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        h1 {
-            font-size: 3em;
-            margin-bottom: 30px;
-            text-align: center;
-        }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      color: #333;
+    }
 
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
 
-        .links a {
-            text-decoration: none;
-            color: white;
-            background-color: #4CAF50;
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: 0.3s;
-            text-align: center;
-            font-weight: bold;
-        }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
 
-        .links a:hover {
-            background-color: #45a049;
-            transform: scale(1.05);
-        }
-    </style>
+    .links a {
+      text-decoration: none;
+      color: white;
+      background-color: #4CAF50;
+      padding: 12px 20px;
+      border-radius: 8px;
+      transition: 0.3s;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* Firebase status indicator */
+    #status {
+      margin-top: 25px;
+      font-size: 1em;
+      color: #555;
+    }
+  </style>
+
+  <!-- ✅ Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js"></script>
+
+  <!-- ✅ Firebase Configuration -->
+  <script>
+    // Paste your Firebase config here 👇 (from Firebase Console)
+    const firebaseConfig = {
+  apiKey: "AIzaSyC9xD7IKkO9sphK8JtBqmXw0ZXV3tl-vj0",
+  authDomain: "uits581a.firebaseapp.com",
+  projectId: "uits581a",
+  storageBucket: "uits581a.firebasestorage.app",
+  messagingSenderId: "330608408945",
+  appId: "1:330608408945:web:c44a31a92935f921fb5ed0"
+};
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Test Firestore connection (optional)
+    db.collection("test")
+      .add({ connected: true, time: new Date() })
+      .then(() => {
+        console.log("✅ Firebase connected successfully!");
+        document.addEventListener("DOMContentLoaded", () => {
+          document.getElementById("status").textContent = "Connected to Firebase ✅";
+        });
+      })
+      .catch((error) => {
+        console.error("❌ Firebase connection failed:", error);
+        document.addEventListener("DOMContentLoaded", () => {
+          document.getElementById("status").textContent = "Firebase connection failed ❌";
+        });
+      });
+  </script>
 </head>
+
 <body>
-    <h1>Welcome to My University Portal</h1>
+  <h1>Welcome to My University Portal</h1>
 
-    <div class="links">
-        <a href="S_11/html/CHEM0513.html">Chemistry Page</a>
-        <a href="S_11/html/CSE0613.html">SPL Page</a>
-        <a href="S_11/html/GED0232.html">English Page</a>
-        <a href="S_11/html/MATH0541.html">Math Page</a>
-        <a href="S_11/html/PHY0533.html">Physics Page</a>
-        <a href="S_11/html/calendar.html">Semester 11 Calendar</a>
+  <div class="links">
+    <a href="S_11/html/CHEM0513.html">Chemistry Page</a>
+    <a href="S_11/html/CSE0613.html">SPL Page</a>
+    <a href="S_11/html/GED0232.html">English Page</a>
+    <a href="S_11/html/MATH0541.html">Math Page</a>
+    <a href="S_11/html/PHY0533.html">Physics Page</a>
+    <a href="S_11/html/calendar.html">Semester 11 Calendar</a>
+  </div>
 
-    </div>
+  <!-- Firebase connection status -->
+  <div id="status">Connecting to Firebase...</div>
 
-    
 </body>
 </html>
