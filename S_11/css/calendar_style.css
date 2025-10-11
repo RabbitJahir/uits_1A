@@ -50,17 +50,17 @@ thead .time-row th {
   -webkit-sticky: top;
 }
 
-/* Sticky first column (day) */
+/* Sticky first column (day) 
 .day-row td:nth-child(1),
 thead th:nth-child(1) {
   position: sticky;
   left: 0;
-  background-color: #f9f9f9; /* match table background */
+  background-color: #f9f9f9; 
   font-weight: bold;
   z-index: 5;
-  width: 80px; /* set fixed width for alignment */
+  width: 80px; 
 }
-
+/*
 /* Sticky second column (additional info / date) */
 .day-row td:nth-child(2),
 thead th:nth-child(2) {
